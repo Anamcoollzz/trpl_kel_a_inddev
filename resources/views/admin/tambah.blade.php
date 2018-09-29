@@ -1,0 +1,10 @@
+@extends('create-form')
+@section('form')
+@include('input',['id'=>'nama','label'=>'Nama'])
+@include('input',['id'=>'no_hp','label'=>'No HP'])
+@include('email')
+@include('password')
+@include('password_confirmation')
+@include('input_image',['id'=>'avatar','label'=>'Avatar'])
+@include('textarea',['id'=>'alamat','label'=>'Alamat'])
+@endsection
