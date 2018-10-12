@@ -30,9 +30,9 @@
 									<!-- </ul> -->
 								</div>
 								<div class="top_bar_user">
-									<div class="user_icon"><img src="images/user.svg" alt=""></div>
+									<div class="user_icon"><img src="{{asset('images/user.svg')}}" alt=""></div>
 									@if(Auth::check())
-									<div><a href="{{route('keluar')}}">Keluar</a></div>
+									<div><a href="{{route('member-keluar')}}">Keluar</a></div>
 									@if(Auth::user()->role == 'admin')
 									<div><a href="{{route('form-daftar')}}">Daftar</a></div>
 									<div><a href="{{route('form-masuk')}}">Masuk</a></div>

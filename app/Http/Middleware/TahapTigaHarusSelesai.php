@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+
+class TahapTigaHarusSelesai
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+    {
+        if(!is_null($request->user())){
+            if($request->user()->tahap_3 == 'belum'){
+                return redirect()->route('tahap3');
+            }
+        }
+        return $next($request);
+    }
+}

@@ -27,18 +27,24 @@ class AuthController extends Controller
     {
     	$r->validate([
     		'nama'=>'required',
-    		'no_hp'=>'required',
+    		// 'no_hp'=>'required',
     		'email'=>'required|email|unique:users',
     		'password'=>'required|min:5',
-    		'alamat'=>'required'
+    		// 'alamat'=>'required'
     	]);
         User::create([
             'nama'=>$r->nama,
-            'no_hp'=>$r->no_hp,
+            // 'no_hp'=>$r->no_hp,
             'email'=>$r->email,
             'password'=>bcrypt($r->password),
-            'alamat'=>$r->alamat,
+            // 'alamat'=>$r->alamat,
         ]);
+        if(Auth::attempt([
+            'email'=>$r->email,
+            'password'=>$r->password,
+        ])){
+            return redirect()->route('tahap1');
+        }
         return redirect()->route('form-daftar')->with('msg', 'Terima kasih telah mendaftar. Menunggu verifikasi admin.');
     }
 

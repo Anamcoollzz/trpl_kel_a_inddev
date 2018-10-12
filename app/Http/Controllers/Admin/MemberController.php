@@ -139,6 +139,7 @@ class MemberController extends Controller
     {
         $member->update([
             'status'=>'verified',
+            'tahap_2'=>'sudah',
         ]);
         return redirect()->route('member.index')->with('success_msg', 'User '.$member->nama.' berhasil diverifikasi');
     }

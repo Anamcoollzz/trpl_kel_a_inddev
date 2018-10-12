@@ -1,11 +1,34 @@
 <?php
 
-Route::get('/','BerandaController@index')->name('beranda');
-Route::get('/masuk','AuthController@formMasuk')->name('form-masuk');
-Route::get('/daftar','AuthController@formDaftar')->name('form-daftar');
-Route::get('/keluar','AuthController@keluar')->name('keluar');
-Route::post('/daftar','AuthController@daftar')->name('daftar');
-Route::post('/masuk','AuthController@masuk')->name('masuk');
+Route::middleware('tahap_satu_selesai')->group(function(){
+	Route::middleware('tahap_dua_selesai')->group(function(){
+
+		Route::middleware('tahap_tiga_selesai')->group(function(){
+
+			Route::get('/','BerandaController@index')->name('beranda');
+			Route::get('/masuk','AuthController@formMasuk')->name('form-masuk');
+			Route::get('/daftar','AuthController@formDaftar')->name('form-daftar');
+			Route::post('/daftar','AuthController@daftar')->name('daftar');
+			Route::post('/masuk','AuthController@masuk')->name('masuk');
+
+		});
+
+	});
+
+});
+
+Route::get('/keluar','AuthController@keluar')->name('member-keluar');
+
+Route::middleware('auth')->group(function(){
+
+	Route::get('/verifikasi/tahap-1','VerifikasiController@tahap1')->name('tahap1');
+	Route::get('/verifikasi/tahap-2','VerifikasiController@tahap2')->name('tahap2');
+	Route::get('/verifikasi/tahap-3','VerifikasiController@tahap3')->name('tahap3');
+	Route::post('/verifikasi/tahap-1','VerifikasiController@tahap1Post')->name('tahap1-post');
+	Route::post('/verifikasi/tahap-2','VerifikasiController@tahap2Post')->name('tahap2-post');
+	Route::post('/verifikasi/tahap-3','VerifikasiController@tahap3Post')->name('tahap3-post');
+
+});
 
 Route::prefix('admin')->group(function(){
 	Route::namespace('Admin')->middleware('auth','hanya_admin')->group(function(){

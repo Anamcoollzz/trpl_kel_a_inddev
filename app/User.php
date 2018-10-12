@@ -23,7 +23,12 @@ class User extends Authenticatable
         'alamat',
         'role',
         'avatar',
-        'status'
+        'status',
+        'tahap_1',
+        'tahap_2',
+        'tahap_3',
+        'jenis_kelamin',
+        'tingkat_member',
     ];
 
     /**

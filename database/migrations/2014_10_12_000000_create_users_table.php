@@ -25,6 +25,21 @@ class CreateUsersTable extends Migration
             $table->enum('status',[
                 'verified','pending','blocked',
             ])->default('pending');
+            $table->enum('tahap_1',[
+                'belum','sudah',
+            ]);
+            $table->enum('tahap_2',[
+                'belum','sudah',
+            ]);
+            $table->enum('tahap_3',[
+                'belum','sudah',
+            ]);
+            $table->enum('tingkat_member',[
+                'member','cv',
+            ]);
+            $table->enum('jenis_kelamin',[
+                'Perempuan','Laki-laki',
+            ]);
             $table->rememberToken();
             $table->timestamps();
         });
