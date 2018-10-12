@@ -22,6 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('role')->default('member');
             $table->string('avatar')->nullable();
+            $table->enum('status',[
+                'verified','pending','blocked',
+            ])->default('pending');
             $table->rememberToken();
             $table->timestamps();
         });

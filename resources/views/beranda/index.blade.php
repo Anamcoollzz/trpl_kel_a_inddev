@@ -23,7 +23,7 @@
 	
 	<!-- Header -->
 	
-	@include('beranda.header')
+	@include('frontend.header')
 	
 	<!-- Banner -->
 

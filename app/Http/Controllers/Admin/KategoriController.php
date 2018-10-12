@@ -6,6 +6,7 @@ use App\Kategori;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+// use Auth;
 
 class KategoriController extends Controller
 {
@@ -17,6 +18,7 @@ class KategoriController extends Controller
      */
     public function index()
     {
+// return Auth::user();
         $data = Kategori::all();
         return view('kategori.index', [
             'data'      => $data,

@@ -134,4 +134,12 @@ class MemberController extends Controller
         $kategori->delete();
         return redirect()->route('member.index')->with('success_msg', 'User berhasil dihapus');
     }
+
+    public function verifikasi(Request $r, User $member)
+    {
+        $member->update([
+            'status'=>'verified',
+        ]);
+        return redirect()->route('member.index')->with('success_msg', 'User '.$member->nama.' berhasil diverifikasi');
+    }
 }
