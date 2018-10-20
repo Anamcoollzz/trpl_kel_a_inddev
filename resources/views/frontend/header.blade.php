@@ -32,6 +32,7 @@
 								<div class="top_bar_user">
 									<div class="user_icon"><img src="{{asset('images/user.svg')}}" alt=""></div>
 									@if(Auth::check())
+									<div><a href="{{route('profil')}}">{{Auth::user()->nama}}</a></div>
 									<div><a href="{{route('member-keluar')}}">Keluar</a></div>
 									@if(Auth::user()->role == 'admin')
 									<div><a href="{{route('form-daftar')}}">Daftar</a></div>
@@ -59,7 +60,7 @@
 						<!-- Logo -->
 						<div class="col-lg-2 col-sm-3 col-3 order-1">
 							<div class="logo_container">
-								<div class="logo"><a href="#">IndDev</a></div>
+								<div class="logo"><a href="{{url('')}}">IndDev</a></div>
 							</div>
 						</div>
 
@@ -147,9 +148,9 @@
 
 								<div class="main_nav_menu ml-auto">
 									<ul class="standard_dropdown main_nav_dropdown">
-										<li><a href="#">Home<i class="fas fa-chevron-down"></i></a></li>
+										<li><a href="{{url('')}}">Home<i class="fas fa-chevron-down"></i></a></li>
 										<li class="hassubs">
-											<a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
+											<a href="#">Produk<i class="fas fa-chevron-down"></i></a>
 											<ul>
 												<li>
 													<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
@@ -159,41 +160,18 @@
 														<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
 													</ul>
 												</li>
-												<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-												<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-												<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+												<li><a href="#">Terpopuler<i class="fas fa-chevron-down"></i></a></li>
+												<li><a href="#">Terbaru<i class="fas fa-chevron-down"></i></a></li>
+												<li><a href="#">Gratis<i class="fas fa-chevron-down"></i></a></li>
 											</ul>
 										</li>
 										<li class="hassubs">
-											<a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>
+											<a href="#">Menu Saya<i class="fas fa-chevron-down"></i></a>
 											<ul>
-												<li>
-													<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-													<ul>
-														<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-														<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-														<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													</ul>
-												</li>
-												<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-												<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-												<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+												<li><a href="#">Tambah Produk<i class="fas fa-chevron-down"></i></a></li>
+												<li><a href="#">Produk Saya<i class="fas fa-chevron-down"></i></a></li>
 											</ul>
 										</li>
-										<li class="hassubs">
-											<a href="#">Pages<i class="fas fa-chevron-down"></i></a>
-											<ul>
-												<li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-												<li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
-												<li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-												<li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a></li>
-												<li><a href="regular.html">Regular Post<i class="fas fa-chevron-down"></i></a></li>
-												<li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
-												<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
-											</ul>
-										</li>
-										<li><a href="blog.html">Developer<i class="fas fa-chevron-down"></i></a></li>
-										<li><a href="contact.html">Hubungi<i class="fas fa-chevron-down"></i></a></li>
 									</ul>
 								</div>
 

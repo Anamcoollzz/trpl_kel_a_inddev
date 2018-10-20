@@ -141,6 +141,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'password_confirmation'=>'Konfirmasi Password'
+    ],
 
 ];

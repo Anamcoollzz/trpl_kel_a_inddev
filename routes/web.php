@@ -11,6 +11,12 @@ Route::middleware('tahap_satu_selesai')->group(function(){
 			Route::post('/daftar','AuthController@daftar')->name('daftar');
 			Route::post('/masuk','AuthController@masuk')->name('masuk');
 
+			Route::get('/profil', 'ProfilController@index')->name('profil');
+			Route::get('/profil/ubah', 'ProfilController@ubah')->name('profil.ubah');
+			Route::put('/profil/update', 'ProfilController@update')->name('profil.update');
+			Route::get('/profil/ubah-password', 'ProfilController@ubahPassword')->name('profil.ubah-password');
+			Route::put('/profil/update-password', 'ProfilController@updatePassword')->name('profil.update-password');
+
 		});
 
 	});

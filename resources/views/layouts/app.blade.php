@@ -10,7 +10,34 @@
 	<link rel="stylesheet" href="{{asset('frontend/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}" type="text/css">
 	<link rel="stylesheet" href="{{asset('frontend/styles/contact_styles.css')}}" type="text/css">
 	<link rel="stylesheet" href="{{asset('frontend/styles/contact_responsive.css')}}" type="text/css">
-
+	<style>
+	select.form-control:not([size]):not([multiple]) {
+		height: 50px;
+		margin-left: 0;
+	}
+	.form-control{
+		height: 50px;
+		padding-left: 25px;
+		border-radius: 5px;
+		color: #0e8ce4;
+	}
+	textarea.form-control{
+		height: 120px;
+	}
+	.form-control:focus {
+		color: #0e8ce4;
+	}
+	.has-error > .form-control:focus, .has-error > .form-control {
+		color: #dc3545 !important;
+	}
+	.form-group > label {
+		color: #0e8ce4;
+		font-size: 18px;
+	}
+	.form-group.has-error > label {
+		color: #dc3545 !important;
+	}
+</style>
 </head>
 
 <body>
