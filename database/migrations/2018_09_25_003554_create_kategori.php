@@ -17,6 +17,7 @@ class CreateKategori extends Migration
             $table->increments('id');
             $table->string('nama');
             $table->string('uri_routing');
+            $table->string('gambar');
         });
     }
 

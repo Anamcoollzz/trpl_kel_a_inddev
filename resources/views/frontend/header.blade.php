@@ -1,3 +1,6 @@
+{{-- @php
+	$_pengaturan = \App\Pengaturan
+@endphp --}}
 <header class="header">
 
 	<!-- Top Bar -->
@@ -6,8 +9,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col d-flex flex-row">
-					<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>(0331) 8888 8888</div>
-					<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">developer@inddev.com</a></div>
+					<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('images/phone.png')}}" alt=""></div>{{\App\Pengaturan::where('key','no_telp')->first()->value}}</div>
+					<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('images/mail.png')}}" alt=""></div><a href="mailto:fastsales@gmail.com">{{\App\Pengaturan::where('key','email')->first()->value}}</a></div>
 					<div class="top_bar_content ml-auto">
 						<div class="top_bar_menu">
 							<!-- <ul class="standard_dropdown top_bar_dropdown"> -->
@@ -83,39 +86,14 @@
 													</ul>
 												</div>
 											</div>
-											<button type="submit" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt=""></button>
+											<button type="submit" class="header_search_button trans_300" value="Submit"><img src="{{asset('images/search.png')}}" alt=""></button>
 										</form>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<!-- Wishlist -->
-						<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
-							<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-								<div class="wishlist d-flex flex-row align-items-center justify-content-end">
-									<div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
-									<div class="wishlist_content">
-										<div class="wishlist_text"><a href="#">Diinginkan</a></div>
-										<div class="wishlist_count">115</div>
-									</div>
-								</div>
-
-								<!-- Cart -->
-								<div class="cart">
-									<div class="cart_container d-flex flex-row align-items-center justify-content-end">
-										<div class="cart_icon">
-											<img src="images/cart.png" alt="">
-											<div class="cart_count"><span>10</span></div>
-										</div>
-										<div class="cart_content">
-											<div class="cart_text"><a href="#">Keranjang</a></div>
-											<div class="cart_price">Rp. 85.000</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+						@include('frontend.layouts.wishlist')
 					</div>
 				</div>
 			</div>
@@ -165,13 +143,17 @@
 												<li><a href="#">Gratis<i class="fas fa-chevron-down"></i></a></li>
 											</ul>
 										</li>
+										@auth
+										@if(Auth::user()->role == 'member')
 										<li class="hassubs">
 											<a href="#">Menu Saya<i class="fas fa-chevron-down"></i></a>
 											<ul>
-												<li><a href="#">Tambah Produk<i class="fas fa-chevron-down"></i></a></li>
-												<li><a href="#">Produk Saya<i class="fas fa-chevron-down"></i></a></li>
+												<li><a href="{{ route('produk.create') }}">Tambah Produk<i class="fas fa-chevron-down"></i></a></li>
+												<li><a href="{{ route('produk.saya') }}">Produk Saya<i class="fas fa-chevron-down"></i></a></li>
 											</ul>
 										</li>
+										@endif
+										@endauth
 									</ul>
 								</div>
 
@@ -269,8 +251,8 @@
 								</ul>
 								
 								<div class="menu_contact">
-									<div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/phone_white.png" alt=""></div>+38 068 005 3570</div>
-									<div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+									<div class="menu_contact_item"><div class="menu_contact_icon"><img src="{{asset('images/phone_white.png')}}" alt=""></div>+38 068 005 3570</div>
+									<div class="menu_contact_item"><div class="menu_contact_icon"><img src="{{asset('images/mail_white.png')}}" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
 								</div>
 							</div>
 						</div>

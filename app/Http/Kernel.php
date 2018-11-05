@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'tahap_satu_selesai'=>\App\Http\Middleware\TahapSatuHarusSelesai::class,
         'tahap_dua_selesai'=>\App\Http\Middleware\TahapDuaHarusSelesai::class,
         'tahap_tiga_selesai'=>\App\Http\Middleware\TahapTigaHarusSelesai::class,
+        'member'=>\App\Http\Middleware\HanyaMember::class,
     ];
 
     /**

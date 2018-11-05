@@ -22,4 +22,16 @@ class Kategori extends Model
     {
     	return url('kategori/'.$this->uri_routing);
     }
+
+    public function scopeSelectMode($q)
+    {
+        $data = [];
+        foreach ($q->get() as $k) {
+            $data[] = [
+                'text'=>$k->nama,
+                'value'=>$k->id,
+            ];
+        }
+        return $data;
+    }
 }

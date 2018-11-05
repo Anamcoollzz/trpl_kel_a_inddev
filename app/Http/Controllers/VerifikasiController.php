@@ -39,7 +39,7 @@ class VerifikasiController extends Controller
 			'nama'=>'required',
 			'no_hp'=>'required',
 			'email'=>'required|email|unique:users,email,'.$r->user()->id,
-			'password'=>'required|min:5',
+			// 'password'=>'required|min:5',
 			'alamat'=>'required'
 		]);
 		$user = $r->user();
@@ -47,7 +47,7 @@ class VerifikasiController extends Controller
 			'nama'=>$r->nama,
 			'no_hp'=>$r->no_hp,
 			'email'=>$r->email,
-			'password'=>bcrypt($r->password),
+			// 'password'=>bcrypt($r->password),
 			'alamat'=>$r->alamat,
 			'jenis_kelamin'=>$r->jenis_kelamin,
 			'tingkat_member'=>$r->jenis_member,

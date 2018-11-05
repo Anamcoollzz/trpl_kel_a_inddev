@@ -29,7 +29,8 @@ class AuthController extends Controller
     		'nama'=>'required',
     		// 'no_hp'=>'required',
     		'email'=>'required|email|unique:users',
-    		'password'=>'required|min:5',
+    		'password'=>'required|min:5|confirmed',
+            'password_confirmation'=>'required',
     		// 'alamat'=>'required'
     	]);
         User::create([

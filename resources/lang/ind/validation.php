@@ -142,7 +142,8 @@ return [
     */
 
     'attributes' => [
-        'password_confirmation'=>'Konfirmasi Password'
+        'password_confirmation'=>'Konfirmasi Password',
+        'id_kategori'=>'Kategori'
     ],
 
 ];

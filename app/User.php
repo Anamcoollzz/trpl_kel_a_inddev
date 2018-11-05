@@ -44,4 +44,14 @@ class User extends Authenticatable
     {
         return $value ? $value : asset('dist/img/user2-160x160.jpg');
     }
+
+    public function wishlist()
+    {
+        return $this->hasMany('App\Wishlist');
+    }
+
+    public function keranjang()
+    {
+        return $this->hasMany('App\Keranjang');
+    }
 }

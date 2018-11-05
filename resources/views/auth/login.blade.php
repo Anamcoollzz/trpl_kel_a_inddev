@@ -17,6 +17,11 @@
             <a href="{{url('/')}}"><b>IND</b>DEV</a>
         </div>
         <div class="login-box-body">
+            @if(session('error_msg'))
+            <div class="alert alert-danger">
+                {{session('error_msg')}}
+            </div>
+            @endif
             <p class="login-box-msg">Masuk untuk memulai sesi anda</p>
             <form action="{{ route('login') }}" method="post">
                 @csrf

@@ -32,6 +32,9 @@
 							<input value="{{old('email')}}" type="email" id="email" class="contact_form_phone input_field" placeholder="Email" name="email">
 							<input type="password" id="password" class="contact_form_phone input_field" placeholder="Password" name="password">
 						</div>
+						<div class="contact_form_inputs d-flex flex-md-row flex-column justify-content-between align-items-between">
+							<input type="password" id="password_confirmation" class="contact_form_phone input_field" placeholder="Konfirmasi Password" name="password_confirmation">
+						</div>
 						{{-- <div class="contact_form_inputs d-flex flex-md-row flex-column justify-content-between align-items-between">
 							<input type="password" id="password" class="contact_form_phone input_field" placeholder="Password" name="password">
 						</div> --}}

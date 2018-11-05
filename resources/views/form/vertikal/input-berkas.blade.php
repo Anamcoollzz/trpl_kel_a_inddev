@@ -1,0 +1,1 @@
+@include('form.vertikal.input',['type'=>'file','accept'=>isset($accept)?$accept:'*'])

@@ -8,10 +8,9 @@
 						<div class="logo"><a href="#">{{config('app.name')}}</a></div>
 					</div>
 					<div class="footer_title">Ada pertanyaan? Hubungi kami 24/7</div>
-					<div class="footer_phone">(0331) 8888 8888</div>
+					<div class="footer_phone">{{\App\Pengaturan::where('key','no_telp')->first()->value}}</div>
 					<div class="footer_contact_text">
-						<p>Jl Kalimantan, Jember</p>
-						<p>Jawa Timur, Ind</p>
+						{!!\App\Pengaturan::where('key','alamat')->first()->value!!}
 					</div>
 					<div class="footer_social">
 						<ul>
@@ -36,7 +35,7 @@
 				</div>
 			</div>
 
-			<div class="col-lg-2">
+			{{-- <div class="col-lg-2">
 				<div class="footer_column">
 					<ul class="footer_list footer_list_2">
 						<li><a href="#">Video Games & Consoles</a></li>
@@ -61,7 +60,7 @@
 						<li><a href="#">Product Support</a></li>
 					</ul>
 				</div>
-			</div>
+			</div> --}}
 
 		</div>
 	</div>
@@ -78,10 +77,10 @@
 					</div>
 					<div class="logos ml-sm-auto">
 						<ul class="logos_list">
-							<li><a href="#"><img src="images/logos_1.png" alt=""></a></li>
-							<li><a href="#"><img src="images/logos_2.png" alt=""></a></li>
-							<li><a href="#"><img src="images/logos_3.png" alt=""></a></li>
-							<li><a href="#"><img src="images/logos_4.png" alt=""></a></li>
+							<li><a href="#"><img src="{{asset('images/logos_1.png')}}" alt=""></a></li>
+							<li><a href="#"><img src="{{asset('images/logos_2.png')}}" alt=""></a></li>
+							<li><a href="#"><img src="{{asset('images/logos_3.png')}}" alt=""></a></li>
+							<li><a href="#"><img src="{{asset('images/logos_4.png')}}" alt=""></a></li>
 						</ul>
 					</div>
 				</div>

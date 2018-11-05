@@ -11,11 +11,19 @@ Route::middleware('tahap_satu_selesai')->group(function(){
 			Route::post('/daftar','AuthController@daftar')->name('daftar');
 			Route::post('/masuk','AuthController@masuk')->name('masuk');
 
-			Route::get('/profil', 'ProfilController@index')->name('profil');
-			Route::get('/profil/ubah', 'ProfilController@ubah')->name('profil.ubah');
-			Route::put('/profil/update', 'ProfilController@update')->name('profil.update');
-			Route::get('/profil/ubah-password', 'ProfilController@ubahPassword')->name('profil.ubah-password');
-			Route::put('/profil/update-password', 'ProfilController@updatePassword')->name('profil.update-password');
+			Route::middleware('member')->group(function(){
+
+				Route::get('/profil', 'ProfilController@index')->name('profil');
+				Route::get('/profil/ubah', 'ProfilController@ubah')->name('profil.ubah');
+				Route::put('/profil/update', 'ProfilController@update')->name('profil.update');
+				Route::get('/profil/ubah-password', 'ProfilController@ubahPassword')->name('profil.ubah-password');
+				Route::put('/profil/update-password', 'ProfilController@updatePassword')->name('profil.update-password');
+
+				Route::post('/produk/hapus-gambar','ProdukController@hapusGambar')->name('produk.hapus-gambar');
+				Route::get('/produk/saya','ProdukController@saya')->name('produk.saya');
+				Route::resource('produk','ProdukController');
+				Route::post('/produk/upload-gambar','ProdukController@uploadGambar')->name('produk.upload-gambar');
+			});
 
 		});
 

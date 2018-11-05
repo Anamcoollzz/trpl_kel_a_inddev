@@ -14,7 +14,9 @@
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/slick-1.8.0/slick.css') }}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/main_styles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/responsive.css') }}">
-
+@stack('css')
+@include('frontend.style-override')
+@stack('style')
 </head>
 
 <body>
@@ -4137,6 +4139,8 @@
 <script src="{{asset('frontend/plugins/slick-1.8.0/slick.js')}}"></script>
 <script src="{{asset('frontend/plugins/easing/easing.js')}}"></script>
 <script src="{{asset('frontend/js/custom.js')}}"></script>
+@stack('js')
+@stack('script')
 </body>
 
 </html>

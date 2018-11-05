@@ -15,6 +15,7 @@ class TahapDuaHarusSelesai
      */
     public function handle($request, Closure $next)
     {
+        // dd($request->user()->tahap_2);
         if(!is_null($request->user())){
             if($request->user()->tahap_2 == 'belum'){
                 return redirect()->route('tahap2');
