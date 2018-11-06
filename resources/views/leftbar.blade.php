@@ -38,6 +38,11 @@
           <i class="fa fa-group"></i> <span>Admin</span>
         </a>
       </li>
+      <li @if($active == 'produk.index') class="active" @endif>
+        <a href="{{ route('admin.produk.index') }}">
+          <i class="fa fa-cube"></i> <span>Produk</span>
+        </a>
+      </li>
       <li class="treeview @if(in_array($active, ['kategori.index','kategori.create'])) active @endif ">
         <a href="#">
           <i class="fa fa-cubes"></i>

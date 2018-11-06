@@ -16,7 +16,7 @@ class TahapTigaHarusSelesai
     public function handle($request, Closure $next)
     {
         if(!is_null($request->user())){
-            if($request->user()->tahap_3 == 'belum'){
+            if($request->user()->tahap_3 == 'belum' && $request->user()->role == 'member'){
                 return redirect()->route('tahap3');
             }
         }

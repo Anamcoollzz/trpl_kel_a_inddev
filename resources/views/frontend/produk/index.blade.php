@@ -31,8 +31,8 @@
 	font-weight: 400;
 	color: #FFFFFF;
 	cursor: pointer;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
 	margin-top: 0;
 }
 .ubah_produk_button:hover {
@@ -77,7 +77,7 @@
 												<img src="{{$d->logo}}" alt="{{$d->nama}}">
 											</div>
 											<div class="product_content">
-												<div class="product_price">{{$d->harga}}</div>
+												<div class="product_price">{{$d->harga_jual}}</div>
 												<div class="product_name">
 													<div>
 														<a href="product.html">{{$d->nama}}</a>
@@ -93,7 +93,9 @@
 														<input type="radio" name="product_color" style="background:#999999">
 													</div> --}}
 													<button class="product_cart_button" style="border-radius: 0;">Lihat</button>
+													@if($d->status == 'pending')
 													<button class="product_cart_button ubah_produk_button">Ubah</button>
+													@endif
 												</div>
 											</div>
 											{{-- <div class="product_fav"><i class="fas fa-heart"></i></div> --}}

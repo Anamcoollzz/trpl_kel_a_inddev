@@ -27,6 +27,7 @@ class CreateProduk extends Migration
             $table->foreign('id_kategori')->references('id')->on('kategori')->onUpdate('set null')->onDelete('set null');
             $table->string('logo');
             $table->text('deskripsi');
+            $table->text('alasan_ditolak')->nullable();
             $table->timestamps();
         });
     }

@@ -53,6 +53,12 @@ Route::prefix('admin')->group(function(){
 		Route::resource('admin','AdminController')->except('show');
 		Route::resource('developer','DeveloperController');
 		Route::get('/keluar','AuthController@keluar')->name('keluar');
+
+		# PRODUK
+		Route::get('/produk', 'ProdukController@index')->name('admin.produk.index');
+		Route::put('/produk/{produk}/tolak', 'ProdukController@tolak')->name('admin.produk.tolak');
+		Route::put('/produk/{produk}/verifikasi', 'ProdukController@verifikasi')->name('admin.produk.verifikasi');
+		Route::get('/produk/{produk}/detail', 'ProdukController@detail')->name('admin.produk.detail');
 	});
 	Auth::routes();
 });

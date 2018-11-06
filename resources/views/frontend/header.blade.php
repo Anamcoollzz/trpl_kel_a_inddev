@@ -35,12 +35,12 @@
 								<div class="top_bar_user">
 									<div class="user_icon"><img src="{{asset('images/user.svg')}}" alt=""></div>
 									@if(Auth::check())
+									@if(Auth::user()->role == 'member')
 									<div><a href="{{route('profil')}}">{{Auth::user()->nama}}</a></div>
-									<div><a href="{{route('member-keluar')}}">Keluar</a></div>
-									@if(Auth::user()->role == 'admin')
-									<div><a href="{{route('form-daftar')}}">Daftar</a></div>
-									<div><a href="{{route('form-masuk')}}">Masuk</a></div>
+									@else
+									<div>{{Auth::user()->nama}}</div>
 									@endif
+									<div><a href="{{route('member-keluar')}}">Keluar</a></div>
 									@else
 
 									<div><a href="{{route('form-daftar')}}">Daftar</a></div>

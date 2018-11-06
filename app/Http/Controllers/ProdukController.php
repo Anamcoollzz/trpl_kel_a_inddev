@@ -84,7 +84,7 @@ class ProdukController extends Controller
                 'id_produk'=>$produk->id,
             ]);
         }
-        return redirect()->route('produk.index')->with('success_msg','Produk berhasil ditambahkan, menunggu verifikasi administrator');
+        return redirect()->route('produk.saya')->with('success_msg','Produk berhasil ditambahkan, menunggu verifikasi administrator');
     }
 
     /**
@@ -147,4 +147,6 @@ class ProdukController extends Controller
         Storage::delete($path);
         return 'delete success';
     }
+
+    
 }

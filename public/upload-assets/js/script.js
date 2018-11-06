@@ -57,7 +57,7 @@ $(function(){
             // Initialize the knob plugin
             tpl.find('input[type="text"]').knob();
 
-            tpl.find('input[type="hidden"]').val(result.name)
+            tpl.find('input[type="hidden"]').val(result.upload_url)
 
             // Listen for clicks on the cancel icon
             tpl.find('span').click(function(){

@@ -10,7 +10,7 @@
 					<img src="{{$d->logo}}" alt="{{$d->nama}}">
 				</div>
 				<div class="product_content">
-					<div class="product_price">{{$d->harga}}</div>
+					<div class="product_price">{{$d->harga_jual}}</div>
 					<div class="product_name">
 						<div>
 							<a href="product.html">{{$d->nama}}</a>
