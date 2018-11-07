@@ -11,7 +11,9 @@
 			<!-- Deals Item -->
 			<div class="owl-item deals_item">
 				<div class="deals_image">
-					<img src="{{$d->logo}}" alt="{{$d->nama}}">
+					<a href="{{ route('produk.show',[$d->id]) }}">
+						<img src="{{$d->logo}}" alt="{{$d->nama}}">
+					</a>
 				</div>
 				<div class="deals_content">
 					<div class="deals_info_line d-flex flex-row justify-content-start">
@@ -58,7 +60,7 @@
 		</div>
 
 	</div>
-@if(count($mingguIni) > 1)
+	@if(count($mingguIni) > 1)
 	<div class="deals_slider_nav_container">
 		<div class="deals_slider_prev deals_slider_nav"><i class="fas fa-chevron-left ml-auto"></i></div>
 		<div class="deals_slider_next deals_slider_nav"><i class="fas fa-chevron-right ml-auto"></i></div>

@@ -35,6 +35,7 @@
 	@stack('js')
 	@stack('script')
 	<script src="{{asset('frontend/js/contact_custom.js')}}"></script>
+	@include('frontend.script')
 </body>
 
 </html>

@@ -21,7 +21,7 @@ Route::middleware('tahap_satu_selesai')->group(function(){
 
 				Route::post('/produk/hapus-gambar','ProdukController@hapusGambar')->name('produk.hapus-gambar');
 				Route::get('/produk/saya','ProdukController@saya')->name('produk.saya');
-				Route::resource('produk','ProdukController');
+				Route::resource('produk','ProdukController')->except('show');
 				Route::post('/produk/upload-gambar','ProdukController@uploadGambar')->name('produk.upload-gambar');
 			});
 
@@ -31,6 +31,11 @@ Route::middleware('tahap_satu_selesai')->group(function(){
 
 });
 
+Route::get('/kategori/{id}', 'ProdukController@byKategori')->name('produk.by-kategori');
+Route::get('/produk/pencarian','ProdukController@pencarian')->name('produk.pencarian');
+Route::get('/produk/terbaru','ProdukController@terbaru')->name('produk.terbaru');
+Route::get('/produk/terpopuler','ProdukController@terpopuler')->name('produk.terpopuler');
+Route::resource('produk','ProdukController')->only('show');
 Route::get('/keluar','AuthController@keluar')->name('member-keluar');
 
 Route::middleware('auth')->group(function(){

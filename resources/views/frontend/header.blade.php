@@ -72,20 +72,21 @@
 							<div class="header_search">
 								<div class="header_search_content">
 									<div class="header_search_form_container">
-										<form action="#" class="header_search_form clearfix">
-											<input type="search" required="required" class="header_search_input" placeholder="Cari aplikasi ...">
+										<form action="{{route('produk.pencarian')}}" class="header_search_form clearfix">
+											<input type="search" name="keyword" required="required" class="header_search_input" placeholder="Cari aplikasi ..." value="{{request()->query('keyword')}}">
 											<div class="custom_dropdown">
 												<div class="custom_dropdown_list">
 													<span class="custom_dropdown_placeholder clc">Semua Kategori</span>
 													<i class="fas fa-chevron-down"></i>
 													<ul class="custom_list clc">
-														<li><a class="clc" href="#">Semua Kategori</a></li>
+														<li><a class="clc" data-uri="semua" href="#">Semua Kategori</a></li>
 														@foreach($_kategori as $k)
-														<li><a class="clc" href="{{ $k->url }}">{{$k->nama}}</a></li>
+														<li><a class="clc" data-uri="{{$k->uri_routing}}" href="{{ $k->url }}">{{$k->nama}}</a></li>
 														@endforeach
 													</ul>
 												</div>
 											</div>
+											<input type="hidden" name="kategori_search" value="semua">
 											<button type="submit" class="header_search_button trans_300" value="Submit"><img src="{{asset('images/search.png')}}" alt=""></button>
 										</form>
 									</div>
@@ -130,17 +131,9 @@
 										<li class="hassubs">
 											<a href="#">Produk<i class="fas fa-chevron-down"></i></a>
 											<ul>
-												<li>
-													<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-													<ul>
-														<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-														<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-														<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													</ul>
-												</li>
-												<li><a href="#">Terpopuler<i class="fas fa-chevron-down"></i></a></li>
-												<li><a href="#">Terbaru<i class="fas fa-chevron-down"></i></a></li>
-												<li><a href="#">Gratis<i class="fas fa-chevron-down"></i></a></li>
+												<li><a href="{{route('produk.terpopuler')}}">Terpopuler<i class="fas fa-chevron-down"></i></a></li>
+												<li><a href="{{route('produk.terbaru')}}">Terbaru<i class="fas fa-chevron-down"></i></a></li>
+												{{-- <li><a href="{{$d->}}">Gratis<i class="fas fa-chevron-down"></i></a></li> --}}
 											</ul>
 										</li>
 										@auth

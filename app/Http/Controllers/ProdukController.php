@@ -11,6 +11,15 @@ use Storage;
 
 class ProdukController extends Controller
 {
+
+    private function terakhirDilihat()
+    {
+        return Produk::verified()
+        ->whereNotNull('terakhir_dilihat')
+        ->orderBy('terakhir_dilihat','desc')
+        ->take(20)->get();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -95,7 +104,16 @@ class ProdukController extends Controller
      */
     public function show(Produk $produk)
     {
-        //
+        if($produk->status != 'verified')
+            abort(404);
+        $produk->terakhir_dilihat = date('Y-m-d H:i:s');
+        $produk->save();
+        $produk->load('screenshots','kategori');
+        return view('frontend.produk.detail',[
+            'title'=>$produk->nama,
+            'd'=>$produk,
+            'terakhirDilihat'=>$this->terakhirDilihat(),
+        ]);
     }
 
     /**
@@ -148,5 +166,61 @@ class ProdukController extends Controller
         return 'delete success';
     }
 
-    
+    public function byKategori($uriRouting)
+    {
+        $kategori = Kategori::where('uri_routing',$uriRouting)->first();
+        if(is_null($kategori))
+            abort(404);
+        return view('frontend.produk.by-kategori',[
+            'title'=>$kategori->nama,
+            // 'k'=>$kategori,
+            'judul'=>$kategori->nama,
+            'data'=>Produk::verified()->where('id_kategori',$kategori->id)->paginate(20),
+            'total'=>Produk::verified()->where('id_kategori',$kategori->id)->count(),
+            'terakhirDilihat'=>$this->terakhirDilihat(),
+        ]);
+    }
+
+    public function pencarian(Request $r)
+    {
+        $keyword = $r->query('keyword');
+        $kategori =Kategori::where('uri_routing', $r->query('kategori_search'))->first();
+        $total = Produk::verified()->where('nama','like','%'.$keyword.'%')->count();
+        $data = Produk::verified()->where('nama','like','%'.$keyword.'%')->paginate(20);
+        if($r->query('kategori_search') != 'semua'){
+            $total = Produk::verified()->where('id_kategori',$kategori->id)->where('nama','like','%'.$keyword.'%')->count();
+            $data = Produk::verified()->where('id_kategori',$kategori->id)->where('nama','like','%'.$keyword.'%')->paginate(20);
+        }
+        return view('frontend.produk.by-kategori',[
+            'title'=>$keyword,
+            // 'k'=>$kategori,
+            'judul'=>$keyword,
+            'data'=>$data,
+            'total'=>$total,
+            'terakhirDilihat'=>$this->terakhirDilihat(),
+            'pencarian'=>true
+        ]);
+    }
+
+    public function terbaru()
+    {
+        return view('frontend.produk.by-kategori',[
+            'title'=>'Produk Terbaru',
+            'judul'=>'Produk Terbaru',
+            'data'=>Produk::verified()->latest()->paginate(20),
+            'total'=>Produk::verified()->count(),
+            'terakhirDilihat'=>$this->terakhirDilihat(),
+        ]);
+    }
+
+    public function terpopuler()
+    {
+        return view('frontend.produk.by-kategori',[
+            'title'=>'Produk Terbaru',
+            'judul'=>'Produk Terbaru',
+            'data'=>Produk::verified()->latest()->paginate(20),
+            'total'=>Produk::verified()->count(),
+            'terakhirDilihat'=>$this->terakhirDilihat(),
+        ]);
+    }
 }

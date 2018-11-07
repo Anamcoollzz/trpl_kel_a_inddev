@@ -2558,6 +2558,7 @@
 	<script src="{{asset('frontend/plugins/slick-1.8.0/slick.js')}}"></script>
 	<script src="{{asset('frontend/plugins/easing/easing.js')}}"></script>
 	<script src="{{asset('frontend/js/custom.js')}}"></script>
+	@include('frontend.script')
 </body>
 
 </html>

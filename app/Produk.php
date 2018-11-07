@@ -23,6 +23,7 @@ class Produk extends Model
 		'bundling_path',
 		'dibeli',
 		'alasan_ditolak',
+		'terakhir_dilihat',
 	];
 
 	protected $table = 'produk';
@@ -30,6 +31,7 @@ class Produk extends Model
 	protected $appends = [
 		'warna_status',
 		'harga_jual',
+		'url',
 	];
 
 	public function kategori()
@@ -70,5 +72,10 @@ class Produk extends Model
 	public function getHargaJualAttribute()
 	{
 		return $this->harga+0.1*$this->harga+0.02*$this->harga;
+	}
+
+	public function getUrlAttribute()
+	{
+		return route('produk.show',[$this->id]);
 	}
 }
