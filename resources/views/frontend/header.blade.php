@@ -31,6 +31,10 @@
 										</ul>
 									</li> -->
 									<!-- </ul> -->
+									<a style="color: black;" href="">
+										<i class="fas fa-bell"></i>
+										<span></span>
+									</a>
 								</div>
 								<div class="top_bar_user">
 									<div class="user_icon"><img src="{{asset('images/user.svg')}}" alt=""></div>

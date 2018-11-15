@@ -13,11 +13,11 @@
 					<div class="product_price">{{$d->harga_jual}}</div>
 					<div class="product_name">
 						<div>
-							<a href="product.html">{{$d->nama}}</a>
+							<a href="{{$d->url}}">{{$d->nama}}</a>
 						</div>
 					</div>
 					<div class="product_extras">
-						<button class="product_cart_button" style="border-radius: 0;">Lihat</button>
+						<a href="{{$d->url}}"><button class="product_cart_button" style="border-radius: 0;">Lihat</button></a>
 					</div>
 				</div>
 			</div>

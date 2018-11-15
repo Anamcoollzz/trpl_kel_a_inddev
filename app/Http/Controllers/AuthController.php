@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use Hash;
 
 class AuthController extends Controller
 {
@@ -32,7 +33,7 @@ class AuthController extends Controller
     		'password'=>'required|min:5|confirmed',
             'password_confirmation'=>'required',
     		// 'alamat'=>'required'
-    	]);
+        ]);
         User::create([
             'nama'=>$r->nama,
             // 'no_hp'=>$r->no_hp,
@@ -65,10 +66,17 @@ class AuthController extends Controller
         if(Auth::check()){
             Auth::logout();
         }
+        if(!Hash::check($r->password, $user->password)){
+            return redirect()->back()->with('error_msg','Password yang anda masukkan salah');
+        }
         if(Auth::attempt([
             'email'=>$r->email,
             'password'=>$r->password,
         ])){
+            // dd($r->query('goto'));
+            if($r->query('goto')){
+                return redirect($r->query('goto'));
+            }
             return redirect('/');
         }
         return redirect()->back()->with('error_msg','Gagal masuk');

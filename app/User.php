@@ -40,6 +40,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function notifikasi()
+    {
+        return $this->hasMany('App\Notifikasi','user_id');
+    }
+
     public function getAvatarAttribute($value)
     {
         return $value ? $value : asset('dist/img/user2-160x160.jpg');

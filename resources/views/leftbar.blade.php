@@ -60,6 +60,37 @@
           </li>
         </ul>
       </li>
+      <li class="treeview @if(in_array($active, ['rekening.index','rekening.create'])) active @endif ">
+        <a href="#">
+          <i class="fa fa-paypal"></i>
+          <span>Rekening</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li @if(in_array($active, ['rekening.create'])) class="active" @endif>
+            <a href="{{ route('rekening.create') }}"><i class="fa fa-circle-o"></i> Tambah Rekening</a>
+          </li>
+          <li @if(in_array($active, ['rekening.index'])) class="active" @endif>
+            <a href="{{ route('rekening.index') }}"><i class="fa fa-circle-o"></i> Data Rekening</a>
+          </li>
+        </ul>
+      </li>
+      <li class="treeview @if(in_array($active, ['pengaturan.privacy-policy'])) active @endif ">
+        <a href="#">
+          <i class="fa fa-paypal"></i>
+          <span>Pengaturan</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li @if(in_array($active, ['pengaturan.privacy-policy'])) class="active" @endif>
+            <a href="{{ route('pengaturan.privacy-policy') }}"><i class="fa fa-circle-o"></i> Privacy Policy</a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </section>
 </aside>

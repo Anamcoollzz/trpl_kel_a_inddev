@@ -50,13 +50,18 @@
 							{{-- <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div> --}}
 							<div class="product_text"><p>{!!$d->deskripsi!!}</p></div>
 							<div class="order_info d-flex flex-row">
-								<form action="#">
+								<form action="{{ route('beli') }}" method="post">
 
 									<div class="product_price">{{$d->harga_jual}}</div>
 									<div class="button_container">
-										<button type="button" class="button cart_button">Beli</button>
+											@csrf
+											<input type="hidden" name="id_produk" value="{{$d->id}}">
+											<button type="submit" class="button cart_button">Beli</button>
+										</form>
+										@if($d->link_demo)
 										<button onclick="window.location='{{$d->link_demo}}'" type="button" style="background-color: #CD3333" class="button cart_button">Demo</button>
-										<div class="product_fav"><i class="fas fa-heart"></i></div>
+										@endif
+										<div class="product_fav {{$isWishlist?'active':''}}" onclick="tambahKeWishlist({{$d->id}})"><i class="fas fa-heart"></i></div>
 									</div>
 
 								</form>
@@ -86,6 +91,33 @@
 	<script src="{{asset('frontend/plugins/easing/easing.js')}}"></script>
 	<script src="{{asset('frontend/js/product_custom.js')}}"></script>
 	@include('frontend.script')
+	<script>
+		// $(document).ready(funtion(){
+
+			function tambahKeWishlist(id){
+				$.post({
+					url : '{{url('daftar-keinginan/tambah')}}',
+					data : {
+						id_produk : id,
+						_token : '{{csrf_token()}}'
+					},
+					success : function(response){
+						setTimeout(function(){
+
+							$.get({
+								url : '{{ url('api/daftar-keinginan/jumlah') }}',
+								success : function(res){
+									$('.wishlist_count').html(res.data);
+								}
+							})
+
+						},1000)
+					}
+				});
+			}
+
+		// });
+	</script>
 </body>
 
 </html>

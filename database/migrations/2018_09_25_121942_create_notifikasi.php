@@ -19,6 +19,7 @@ class CreateNotifikasi extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('isi');
             $table->string('tipe');
+            $table->string('sudah_dibaca',20)->default('belum');
             $table->timestamps();
         });
     }

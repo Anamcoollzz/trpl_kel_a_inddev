@@ -19,18 +19,22 @@
 			<div class="col-lg-9">
 				<div class="popular_categories_slider_container">
 					<div class="owl-carousel owl-theme popular_categories_slider">
-@foreach ($kategori as $d)
+						@foreach ($kategori as $d)
 						<!-- Popular Categories Item -->
 						<div class="owl-item">
 							<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 								<div class="popular_category_image">
 									<img src="{{$d->gambar}}" alt="{{$d->nama}}">
 								</div>
-								<div class="popular_category_text">{{$d->nama}}</div>
+								<div class="popular_category_text">
+									<a href="{{$d->url}}" style="color: black;">
+										{{$d->nama}}
+									</a>
+								</div>
 							</div>
 						</div>
 
-@endforeach
+						@endforeach
 					</div>
 				</div>
 			</div>

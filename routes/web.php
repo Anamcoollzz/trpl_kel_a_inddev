@@ -11,7 +11,11 @@ Route::middleware('tahap_satu_selesai')->group(function(){
 			Route::post('/daftar','AuthController@daftar')->name('daftar');
 			Route::post('/masuk','AuthController@masuk')->name('masuk');
 
+
 			Route::middleware('member')->group(function(){
+
+				Route::post('/daftar-keinginan/tambah', 'DaftarKeinginanController@store');
+				Route::post('/produk/beli','ProdukController@beli')->name('beli');
 
 				Route::get('/profil', 'ProfilController@index')->name('profil');
 				Route::get('/profil/ubah', 'ProfilController@ubah')->name('profil.ubah');
@@ -21,7 +25,8 @@ Route::middleware('tahap_satu_selesai')->group(function(){
 
 				Route::post('/produk/hapus-gambar','ProdukController@hapusGambar')->name('produk.hapus-gambar');
 				Route::get('/produk/saya','ProdukController@saya')->name('produk.saya');
-				Route::resource('produk','ProdukController')->except('show');
+				Route::get('/produk/saya/{produk}/ubah', 'ProdukController@edit')->name('produk.ubah');
+				Route::resource('produk','ProdukController')->except('show','edit','update');
 				Route::post('/produk/upload-gambar','ProdukController@uploadGambar')->name('produk.upload-gambar');
 			});
 
@@ -58,12 +63,17 @@ Route::prefix('admin')->group(function(){
 		Route::resource('admin','AdminController')->except('show');
 		Route::resource('developer','DeveloperController');
 		Route::get('/keluar','AuthController@keluar')->name('keluar');
+		Route::resource('rekening','RekeningController');
 
 		# PRODUK
 		Route::get('/produk', 'ProdukController@index')->name('admin.produk.index');
 		Route::put('/produk/{produk}/tolak', 'ProdukController@tolak')->name('admin.produk.tolak');
 		Route::put('/produk/{produk}/verifikasi', 'ProdukController@verifikasi')->name('admin.produk.verifikasi');
 		Route::get('/produk/{produk}/detail', 'ProdukController@detail')->name('admin.produk.detail');
+
+		# PENGATURAN
+		Route::get('/pengaturan/privacy-policy', 'PengaturanController@privacyPolicy')->name('pengaturan.privacy-policy');
+		Route::post('/pengaturan/privacy-policy', 'PengaturanController@privacyPolicyPost')->name('pengaturan.privacy-policy-post');
 	});
 	Auth::routes();
 });

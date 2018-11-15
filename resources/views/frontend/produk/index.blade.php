@@ -92,9 +92,15 @@
 														<input type="radio" name="product_color" style="background:#000000">
 														<input type="radio" name="product_color" style="background:#999999">
 													</div> --}}
+													@if($d->status == 'verified')
+													<a href="{{ route('produk.show',[$d->id]) }}">
 													<button class="product_cart_button" style="border-radius: 0;">Lihat</button>
+													</a>
+													@endif
 													@if($d->status == 'pending')
+													<a href="{{ route('produk.ubah',[$d->id]) }}">
 													<button class="product_cart_button ubah_produk_button">Ubah</button>
+													</a>
 													@endif
 												</div>
 											</div>

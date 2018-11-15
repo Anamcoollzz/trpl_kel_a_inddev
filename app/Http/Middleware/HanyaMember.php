@@ -19,6 +19,6 @@ class HanyaMember
             if($request->user()->role == 'member')
                 return $next($request);
         }
-        return redirect()->route('masuk')->with('error_msg','Silakan masuk terlebih dahulu');
+        return redirect()->route('masuk',['goto'=>url()->previous()])->with('error_msg','Silakan masuk terlebih dahulu');
     }
 }

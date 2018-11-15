@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Produk;
 use App\ProdukGambar;
 use App\Kategori;
+use App\DaftarKeinginan;
 use Illuminate\Http\Request;
 use Auth;
 use Storage;
@@ -109,10 +110,17 @@ class ProdukController extends Controller
         $produk->terakhir_dilihat = date('Y-m-d H:i:s');
         $produk->save();
         $produk->load('screenshots','kategori');
+        $isWishlist = false;
+        if(Auth::user()){
+            $isWishlist = DaftarKeinginan::where('id_produk',$produk->id)
+            ->where('user_id',Auth::id())
+            ->count() > 0 ? true : false;
+        }
         return view('frontend.produk.detail',[
             'title'=>$produk->nama,
             'd'=>$produk,
             'terakhirDilihat'=>$this->terakhirDilihat(),
+            'isWishlist'=>$isWishlist,
         ]);
     }
 
@@ -124,7 +132,17 @@ class ProdukController extends Controller
      */
     public function edit(Produk $produk)
     {
-        //
+        if($produk->user_id != Auth::id())
+            abort(404);
+        if($produk->status == 'verified'){
+            return redirect()->back();
+        }
+        $produk->load('screenshots');
+        return view('frontend.produk.ubah',[
+            'title'=>'Ubah '.$produk->nama,
+            'kategori'=>Kategori::selectMode(),
+            'd'=>$produk,
+        ]);
     }
 
     /**
@@ -222,5 +240,10 @@ class ProdukController extends Controller
             'total'=>Produk::verified()->count(),
             'terakhirDilihat'=>$this->terakhirDilihat(),
         ]);
+    }
+
+    public function beli(Request $r)
+    {
+        
     }
 }

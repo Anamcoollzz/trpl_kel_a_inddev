@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Produk;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifikasi;
+use Auth;
 
 class ProdukController extends Controller
 {
@@ -127,6 +129,11 @@ class ProdukController extends Controller
             'bundling_path'=>$bundling_path,
             'link_demo'=>$r->bundling_path,
         ]);
+        $notifikasi = new Notifikasi();
+        $notifikasi->isi = 'Produk dengan judul <a href="'.route('produk.show',[$produk->id]).'">'.$produk->nama.'</a> berhasil diverifikasi';
+        $notifikasi->tipe = 'success';
+        $notifikasi->user_id = Auth::id();
+        $notifikasi->save();
         return redirect()->back()->with('success_msg', 'Produk berhasil diverifikasi');
     }
 }

@@ -27,7 +27,7 @@
 					<div class="contact_form_container">
 						<div class="contact_form_title">Masuk</div>
 
-						<form action="{{route('masuk')}}" id="contact_form" method="post">
+						<form action="{{route('masuk',['goto'=>request()->query('goto')])}}" id="contact_form" method="post">
 							@csrf
 							<div class="contact_form_inputs d-flex flex-md-row flex-column justify-content-between align-items-between">
 								<input type="text" id="email" class="contact_form_email input_field" placeholder="Email" required="required" name="email">
