@@ -39,6 +39,13 @@ class DaftarKeinginanController extends Controller
         $request->validate([
             'id_produk'=>'required|numeric',
         ]);
+        if(is_null(Auth::user())){
+            return [
+            'message'=>'Masuk terlebih dahulu',
+            'status'=>'ok',
+            'status_code'=>302,
+        ];
+        }
         $id = Auth::id();
         $dk = DaftarKeinginan::where('id_produk',$request->id_produk)
         ->where('user_id',$id)

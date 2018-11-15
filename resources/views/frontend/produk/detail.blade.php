@@ -54,44 +54,44 @@
 
 									<div class="product_price">{{$d->harga_jual}}</div>
 									<div class="button_container">
-											@csrf
-											<input type="hidden" name="id_produk" value="{{$d->id}}">
-											<button type="submit" class="button cart_button">Beli</button>
-										</form>
-										@if($d->link_demo)
-										<button onclick="window.location='{{$d->link_demo}}'" type="button" style="background-color: #CD3333" class="button cart_button">Demo</button>
-										@endif
-										<div class="product_fav {{$isWishlist?'active':''}}" onclick="tambahKeWishlist({{$d->id}})"><i class="fas fa-heart"></i></div>
-									</div>
+										@csrf
+										<input type="hidden" name="id_produk" value="{{$d->id}}">
+										<button type="submit" class="button cart_button">Beli</button>
+									</form>
+									@if($d->link_demo)
+									<button onclick="window.location='{{$d->link_demo}}'" type="button" style="background-color: #CD3333" class="button cart_button">Demo</button>
+									@endif
+									<div class="product_fav {{$isWishlist?'active':''}}" onclick="tambahKeWishlist({{$d->id}})"><i class="fas fa-heart"></i></div>
+								</div>
 
-								</form>
-							</div>
+							</form>
 						</div>
 					</div>
-
 				</div>
+
 			</div>
 		</div>
-
-		@include('frontend.produk.sering-dilihat')
-
-		@include('frontend.footer')
-
 	</div>
 
-	<script src="{{asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
-	<script src="{{asset('frontend/styles/bootstrap4/popper.js')}}"></script>
-	<script src="{{asset('frontend/styles/bootstrap4/bootstrap.min.js')}}"></script>
-	<script src="{{asset('frontend/plugins/greensock/TweenMax.min.js')}}"></script>
-	<script src="{{asset('frontend/plugins/greensock/TimelineMax.min.js')}}"></script>
-	<script src="{{asset('frontend/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
-	<script src="{{asset('frontend/plugins/greensock/animation.gsap.min.js')}}"></script>
-	<script src="{{asset('frontend/plugins/greensock/ScrollToPlugin.min.js')}}"></script>
-	<script src="{{asset('frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
-	<script src="{{asset('frontend/plugins/easing/easing.js')}}"></script>
-	<script src="{{asset('frontend/js/product_custom.js')}}"></script>
-	@include('frontend.script')
-	<script>
+	@include('frontend.produk.sering-dilihat')
+
+	@include('frontend.footer')
+
+</div>
+
+<script src="{{asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{asset('frontend/styles/bootstrap4/popper.js')}}"></script>
+<script src="{{asset('frontend/styles/bootstrap4/bootstrap.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/greensock/TweenMax.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/greensock/TimelineMax.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/greensock/animation.gsap.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/greensock/ScrollToPlugin.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
+<script src="{{asset('frontend/plugins/easing/easing.js')}}"></script>
+<script src="{{asset('frontend/js/product_custom.js')}}"></script>
+@include('frontend.script')
+<script>
 		// $(document).ready(funtion(){
 
 			function tambahKeWishlist(id){
@@ -101,17 +101,35 @@
 						id_produk : id,
 						_token : '{{csrf_token()}}'
 					},
-					success : function(response){
-						setTimeout(function(){
+					success : function(response, status, code){
 
-							$.get({
-								url : '{{ url('api/daftar-keinginan/jumlah') }}',
-								success : function(res){
-									$('.wishlist_count').html(res.data);
-								}
-							})
+						if(response.code == 302){
 
-						},1000)
+							window.location = '{{ route('masuk') }}?goto='+location
+
+						}else{
+
+							setTimeout(function(){
+
+								$.get({
+									url : '{{ url('api/daftar-keinginan/jumlah') }}',
+									success : function(res){
+										$('.wishlist_count').html(res.data);
+									}
+								})
+
+							},1000)
+						}
+					},
+					statusCode : {
+						302 : function(){
+							window.location = '{{ route('masuk') }}?goto='+location
+						}
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						console.log(jqXHR.status);
+						console.log(textStatus);
+						console.log(errorThrown);
 					}
 				});
 			}

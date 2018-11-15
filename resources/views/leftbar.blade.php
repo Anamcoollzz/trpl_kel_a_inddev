@@ -79,7 +79,7 @@
       </li>
       <li class="treeview @if(in_array($active, ['pengaturan.privacy-policy'])) active @endif ">
         <a href="#">
-          <i class="fa fa-paypal"></i>
+          <i class="fa fa-gear"></i>
           <span>Pengaturan</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>

@@ -54,7 +54,7 @@
 						<div class="contact_form_text">
 							<textarea id="alamat" class="text_field contact_form_message" name="alamat" rows="4" placeholder="Alamat" required="required">{{old('alamat')?old('alamat'):Auth::user()->alamat}}</textarea>
 						</div>
-						<div class="alert alert-info">
+						<div class="alert alert-info mt-2">
 							<ul>
 								<li>Jika anda mendaftar sebagai jenis member biasa maka anda mendaftar sebagai solo programmer</li>
 								<li>Jika anda mendaftar sebagai jenis member CV maka anda mendaftar tim programmer (perusahaan)</li>

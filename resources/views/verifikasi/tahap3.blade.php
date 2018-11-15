@@ -24,7 +24,7 @@
 				<div class="contact_form_container">
 					<div class="contact_form_title">Verifikasi tahap 3</div>
 					<div class="alert alert-info">
-						Ini adalah halaman privacy policy & aggrement
+						{!!$d?$d->value:''!!}
 					</div>
 					<form action="{{route('tahap3-post')}}" method="POST">
 						@csrf

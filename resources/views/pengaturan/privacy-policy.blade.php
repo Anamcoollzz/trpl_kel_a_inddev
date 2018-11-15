@@ -1,5 +1,6 @@
 @extends('create-form')
 @section('form')
-@include('input',['id'=>'nama','label'=>'Nama'])
-@include('input',['id'=>'uri_routing','label'=>'URI Routing'])
+@include('form.wysihtml5',['id'=>'privacy_policy','label'=>'Privacy Policy','value'=>$d?$d->value:''])
 @endsection
+
+@include('import-wysihtml5')

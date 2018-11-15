@@ -1,0 +1,1 @@
+<textarea name="{{$id}}" id="{{$id}}" class="textarea" placeholder="{{$label}}" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{old($id)?old($id):(isset($value) ? $value : '')}}</textarea>

@@ -92,13 +92,14 @@ class PengaturanController extends Controller
             'modul'         => 'Pengaturan',
             'action'        => route('pengaturan.privacy-policy-post'),
             'active'        => 'pengaturan.privacy-policy',
+            'd'=>Pengaturan::where('key','privacy-policy')->first(),
         ]);
     }
 
     public function privacyPolicyPost(Request $r)
     {
-        $request->validate([
-            'privacy-policy'=>'required',
+        $r->validate([
+            'privacy_policy'=>'required',
         ]);
         Pengaturan::updateOrCreate([
             'key'=>'privacy-policy'

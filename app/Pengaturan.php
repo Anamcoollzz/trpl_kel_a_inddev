@@ -7,4 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Pengaturan extends Model
 {
     protected $table = 'pengaturan';
+
+    protected $fillable = [
+    	'key',
+    	'value',
+    ];
+
+    public $timestamps = false;
 }

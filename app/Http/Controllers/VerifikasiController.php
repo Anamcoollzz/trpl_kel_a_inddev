@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pengaturan;
 
 class VerifikasiController extends Controller
 {
@@ -84,7 +85,8 @@ class VerifikasiController extends Controller
 		}
 		if($tahap3 == false){
 			return view('verifikasi.tahap3',[
-				'title'=>'Verifikasi tahap 3'
+				'title'=>'Verifikasi tahap 3',
+				'd'=>Pengaturan::where('key','privacy-policy')->first(),
 			]);
 		}
 		return redirect('/');
