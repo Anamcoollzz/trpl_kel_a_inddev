@@ -21,7 +21,9 @@ class AppServiceProvider extends ServiceProvider
             'edit'=>'ubah',
             'create'=>'tambah',
         ]);
-        View::share('_kategori', \App\Kategori::all());
+        if (Schema::hasTable('kategori')) {
+            View::share('_kategori', \App\Kategori::all());
+        }
     }
 
     /**

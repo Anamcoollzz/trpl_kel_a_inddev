@@ -80,3 +80,7 @@ Route::prefix('admin')->group(function(){
 	});
 	Auth::routes();
 });
+
+Route::get('/kontol', function(){
+	return \App\Pengaturan::all();
+});
