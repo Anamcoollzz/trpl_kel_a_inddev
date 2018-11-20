@@ -26,7 +26,7 @@
 							<div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
 								<div class="viewed_image"><img src="{{$s->logo}}" alt="{{$s->nama}}"></div>
 								<div class="viewed_content text-center">
-									<div class="viewed_price">{{$s->harga_jual}}</div>
+									<div class="viewed_price">{{rp($s->harga_jual)}}</div>
 									<div class="viewed_name"><a href="{{route('produk.show',[$s->id])}}">{{$s->nama}}</a></div>
 								</div>
 							</div>

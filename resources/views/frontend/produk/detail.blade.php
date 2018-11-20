@@ -52,7 +52,7 @@
 							<div class="order_info d-flex flex-row">
 								<form action="{{ route('beli') }}" method="post">
 
-									<div class="product_price">{{$d->harga_jual}}</div>
+									<div class="product_price">{{rp($d->harga_jual)}}</div>
 									<div class="button_container">
 										@csrf
 										<input type="hidden" name="id_produk" value="{{$d->id}}">

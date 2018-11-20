@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Produk;
+use App\Keranjang;
 use App\ProdukGambar;
 use App\Kategori;
 use App\DaftarKeinginan;
@@ -244,6 +245,10 @@ class ProdukController extends Controller
 
     public function beli(Request $r)
     {
-        
+        Keranjang::updateOrCreate([
+            'id_produk'=>$r->id_produk,
+            'user_id'=>$r->user()->id,
+        ]);
+        return redirect('keranjang-belanja');
     }
 }

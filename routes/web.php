@@ -17,6 +17,9 @@ Route::middleware('tahap_satu_selesai')->group(function(){
 				Route::post('/daftar-keinginan/tambah', 'DaftarKeinginanController@store');
 				Route::post('/produk/beli','ProdukController@beli')->name('beli');
 
+				// KERANJANG BELANJA
+				Route::get('/keranjang-belanja','KeranjangController@index')->name('keranjang');
+
 				Route::get('/profil', 'ProfilController@index')->name('profil');
 				Route::get('/profil/ubah', 'ProfilController@ubah')->name('profil.ubah');
 				Route::put('/profil/update', 'ProfilController@update')->name('profil.update');

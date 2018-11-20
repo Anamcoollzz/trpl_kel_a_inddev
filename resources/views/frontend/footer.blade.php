@@ -26,7 +26,7 @@
 
 			<div class="col-lg-2 offset-lg-2">
 				<div class="footer_column">
-					<div class="footer_title">Ambil Cepat</div>
+					<div class="footer_title">Kategori</div>
 					<ul class="footer_list">
 						@foreach($_kategori as $k)
 						<li><a href="{{ $k->url }}">{{$k->nama}}</a></li>
@@ -35,32 +35,32 @@
 				</div>
 			</div>
 
-			{{-- <div class="col-lg-2">
+			<div class="col-lg-2">
 				<div class="footer_column">
 					<ul class="footer_list footer_list_2">
-						<li><a href="#">Video Games & Consoles</a></li>
-						<li><a href="#">Accessories</a></li>
-						<li><a href="#">Cameras & Photos</a></li>
-						<li><a href="#">Hardware</a></li>
-						<li><a href="#">Computers & Laptops</a></li>
+						<li><a href="#">Menu</a></li>
+						<li><a href="#">Menu</a></li>
+						<li><a href="#">Menu</a></li>
+						<li><a href="#">Menu</a></li>
+						<li><a href="#">Menu</a></li>
 					</ul>
 				</div>
 			</div>
 
 			<div class="col-lg-2">
 				<div class="footer_column">
-					<div class="footer_title">Customer Care</div>
+					<div class="footer_title">Layanan Pelanggan</div>
 					<ul class="footer_list">
-						<li><a href="#">My Account</a></li>
-						<li><a href="#">Order Tracking</a></li>
-						<li><a href="#">Wish List</a></li>
-						<li><a href="#">Customer Services</a></li>
-						<li><a href="#">Returns / Exchange</a></li>
-						<li><a href="#">FAQs</a></li>
-						<li><a href="#">Product Support</a></li>
+						<li><a href="#">Menu</a></li>
+						<li><a href="#">Menu</a></li>
+						<li><a href="#">Menu</a></li>
+						<li><a href="#">Menu</a></li>
+						<li><a href="#">Menu</a></li>
+						<li><a href="#">Menu</a></li>
+						<li><a href="#">Menu</a></li>
 					</ul>
 				</div>
-			</div> --}}
+			</div>
 
 		</div>
 	</div>

@@ -31,12 +31,14 @@
 					</div>
 				</div>
 				<div class="cart_content">
-					<div class="cart_text"><a href="#">Keranjang</a></div>
+					<div class="cart_text">
+						<a href="{{ route('keranjang') }}">Keranjang</a>
+					</div>
 					<div class="cart_price">
 						@auth()
-						{{Auth::user()->keranjang()->with('produk')->get()->sum(function($item){
-							return $item->produk->harga;
-						})}}
+						{{rp(Auth::user()->keranjang()->with('produk')->get()->sum(function($item){
+							return $item->produk->harga_jual;
+						}))}}
 						@else
 						0
 						@endauth
