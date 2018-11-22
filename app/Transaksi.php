@@ -24,4 +24,9 @@ class Transaksi extends Model
 	{
 		return $this->hasMany('App\TransaksiDetail','id_transaksi');
 	}
+
+	public function user()
+	{
+		return $this->belongsTo('App\User', 'user_id');
+	}
 }

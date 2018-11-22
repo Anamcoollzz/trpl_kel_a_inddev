@@ -44,7 +44,7 @@
 									<td>{{$d->no}}</td>
 									<td>{{$d->created_at}}</td>
 									<td>
-										@if($d->status == 'waiting for payment')
+										@if($d->status == 'waiting for payment' || $d->status == 'waiting payment verification')
 										<span class="badge badge-warning">{{$d->status}}</span>
 										@else
 										<span class="badge">{{$d->status}}</span>

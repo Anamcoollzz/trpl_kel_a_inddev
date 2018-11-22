@@ -1,1 +1,1 @@
-<a href="<?=$link?>" class="btn btn-flat btn-success">Detail</a>
+<a href="<?=$link?>" class="btn btn-flat btn-success">Rincian</a>

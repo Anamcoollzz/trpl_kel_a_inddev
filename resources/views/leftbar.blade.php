@@ -43,6 +43,11 @@
           <i class="fa fa-cube"></i> <span>Produk</span>
         </a>
       </li>
+      <li @if($active == 'transaksi.index') class="active" @endif>
+        <a href="{{ route('admin.transaksi.index') }}">
+          <i class="fa fa-cube"></i> <span>Transaksi</span>
+        </a>
+      </li>
       <li class="treeview @if(in_array($active, ['kategori.index','kategori.create'])) active @endif ">
         <a href="#">
           <i class="fa fa-cubes"></i>

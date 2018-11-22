@@ -87,6 +87,12 @@ Route::prefix('admin')->group(function(){
 		# PENGATURAN
 		Route::get('/pengaturan/privacy-policy', 'PengaturanController@privacyPolicy')->name('pengaturan.privacy-policy');
 		Route::post('/pengaturan/privacy-policy', 'PengaturanController@privacyPolicyPost')->name('pengaturan.privacy-policy-post');
+
+		# TRANSAKSI
+		Route::get('/transaksi', 'TransaksiController@index')->name('admin.transaksi.index');
+		Route::put('/transaksi/{transaksi}/tolak', 'TransaksiController@tolak')->name('admin.transaksi.tolak');
+		Route::put('/transaksi/{transaksi}/verifikasi', 'TransaksiController@verifikasi')->name('admin.transaksi.verifikasi');
+		Route::get('/transaksi/{transaksi}/detail', 'TransaksiController@detail')->name('admin.transaksi.detail');
 	});
 	Auth::routes();
 });
