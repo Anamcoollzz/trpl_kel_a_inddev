@@ -28,11 +28,11 @@
           <i class="fa fa-user-plus"></i> <span>Member</span>
         </a>
       </li>
-      <li @if($active == 'developer.index') class="active" @endif>
+      {{-- <li @if($active == 'developer.index') class="active" @endif>
         <a href="{{ route('developer.index') }}">
           <i class="fa fa-laptop"></i> <span>Developer</span>
         </a>
-      </li>
+      </li> --}}
       <li @if($active == 'admin.index') class="active" @endif>
         <a href="{{ route('admin.index') }}">
           <i class="fa fa-group"></i> <span>Admin</span>

@@ -22,7 +22,7 @@
 					</div>
 					<div class="deals_info_line d-flex flex-row justify-content-start">
 						<div class="deals_item_name">{{$d->nama}}</div>
-						<div class="deals_item_price ml-auto">{{$d->harga_jual}}</div>
+						<div class="deals_item_price ml-auto">{{rp($d->harga_jual)}}</div>
 					</div>
 					{{-- <div class="available">
 						<div class="available_line d-flex flex-row justify-content-start">

@@ -127,7 +127,7 @@ class ProdukController extends Controller
         $produk->update([
             'status'=>'verified',
             'bundling_path'=>$bundling_path,
-            'link_demo'=>$r->bundling_path,
+            'link_demo'=>$r->link_demo,
         ]);
         $notifikasi = new Notifikasi();
         $notifikasi->isi = 'Produk dengan judul <a href="'.route('produk.show',[$produk->id]).'">'.$produk->nama.'</a> berhasil diverifikasi';

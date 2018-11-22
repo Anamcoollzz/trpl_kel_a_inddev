@@ -36,6 +36,11 @@ Route::middleware('tahap_satu_selesai')->group(function(){
 				Route::resource('produk','ProdukController')->except('show','edit','update');
 				Route::post('/produk/upload-gambar','ProdukController@uploadGambar')->name('produk.upload-gambar');
 				Route::put('/produk/upload-gambar','ProdukController@uploadGambar');
+				Route::post('/produk/checkout','ProdukController@checkout')->name('checkout');
+
+				# TRANSAKSI
+				Route::resource('transaksi', 'TransaksiController');
+				Route::put('/transaksi/bayar/{transaksi}', 'TransaksiController@bayar')->name('bayar');
 			});
 
 		});

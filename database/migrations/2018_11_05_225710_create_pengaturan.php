@@ -16,7 +16,7 @@ class CreatePengaturan extends Migration
         Schema::create('pengaturan', function (Blueprint $table) {
             $table->increments('id');
             $table->string('key');
-            $table->string('value');
+            $table->text('value');
         });
     }
 

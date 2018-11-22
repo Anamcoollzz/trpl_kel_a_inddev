@@ -147,6 +147,7 @@
 											<ul>
 												<li><a href="{{ route('produk.create') }}">Tambah Produk<i class="fas fa-chevron-down"></i></a></li>
 												<li><a href="{{ route('produk.saya') }}">Produk Saya<i class="fas fa-chevron-down"></i></a></li>
+												<li><a href="{{ route('transaksi.index') }}">Transaksi Saya<i class="fas fa-chevron-down"></i></a></li>
 											</ul>
 										</li>
 										@endif

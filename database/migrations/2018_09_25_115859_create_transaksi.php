@@ -15,16 +15,16 @@ class CreateTransaksi extends Migration
     {
         Schema::create('transaksi', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('no',100);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('id_produk')->unsigned();
-            $table->foreign('id_produk')->references('id')->on('produk')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('rekening_admin')->unsigned()->nullable();
             $table->foreign('rekening_admin')->references('id')->on('rekening')->onUpdate('set null')->onDelete('set null');
-            $table->string('nama_pengirim');
-            $table->string('norek_pengirim');
-            $table->string('tanggal_transfer');
-            $table->string('bukti_transfer');
+            $table->string('lunas',50)->default('belum');
+            $table->string('nama_pengirim')->nullable();
+            $table->string('norek_pengirim')->nullable();
+            $table->string('tanggal_transfer')->nullable();
+            $table->string('bukti_transfer')->nullable();
             $table->string('status');
             $table->timestamps();
         });

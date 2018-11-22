@@ -27,6 +27,13 @@
 		<div class="single_product">
 			<div class="container">
 				<div class="row">
+					@if(session('error_msg'))
+					<div class="col-md-12">
+						<div class="alert alert-danger">
+							{{session('error_msg')}}
+						</div>
+					</div>
+					@endif
 
 					<!-- Images -->
 					<div class="col-lg-2 order-lg-1 order-2">
@@ -48,8 +55,16 @@
 							<div class="product_category">{{$d->kategori->nama}}</div>
 							<div class="product_name">{{$d->nama}}</div>
 							{{-- <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div> --}}
-							<div class="product_text"><p>{!!$d->deskripsi!!}</p></div>
-							<div class="order_info d-flex flex-row">
+							<div class="product_text">
+								<p>
+									{!!substr($d->deskripsi, 0, 200)!!} 
+									<br>
+									<a style="color: #6A98E5; cursor: pointer;" href="#" id="selengkapnya">
+										selengkapnya
+									</a>
+								</p>
+							</div>
+							<div class="order_info d-flex flex-row" style="margin-top: 0;">
 								<form action="{{ route('beli') }}" method="post">
 
 									<div class="product_price">{{rp($d->harga_jual)}}</div>
@@ -59,7 +74,9 @@
 										<button type="submit" class="button cart_button">Beli</button>
 									</form>
 									@if($d->link_demo)
-									<button onclick="window.location='{{$d->link_demo}}'" type="button" style="background-color: #CD3333" class="button cart_button">Demo</button>
+									<a href="{{$d->link_demo}}" target="_blank">
+									<button type="button" style="background-color: #CD3333" class="button cart_button">Demo</button>
+									</a>
 									@endif
 									<div class="product_fav {{$isWishlist?'active':''}}" onclick="tambahKeWishlist({{$d->id}})"><i class="fas fa-heart"></i></div>
 								</div>
@@ -77,6 +94,22 @@
 
 	@include('frontend.footer')
 
+	<div class="modal fade" tabindex="-1" role="dialog" id="modalSelengkapnya">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">{{$d->nama}}</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					{!!$d->deskripsi!!}
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
 
 <script src="{{asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
@@ -92,50 +125,53 @@
 <script src="{{asset('frontend/js/product_custom.js')}}"></script>
 @include('frontend.script')
 <script>
-		// $(document).ready(funtion(){
 
-			function tambahKeWishlist(id){
-				$.post({
-					url : '{{url('daftar-keinginan/tambah')}}',
-					data : {
-						id_produk : id,
-						_token : '{{csrf_token()}}'
-					},
-					success : function(response, status, code){
+	function tambahKeWishlist(id){
+		$.post({
+			url : '{{url('daftar-keinginan/tambah')}}',
+			data : {
+				id_produk : id,
+				_token : '{{csrf_token()}}'
+			},
+			success : function(response, status, code){
 
-						if(response.code == 302){
+				if(response.code == 302){
 
-							window.location = '{{ route('masuk') }}?goto='+location
+					window.location = '{{ route('masuk') }}?goto='+location
 
-						}else{
+				}else{
 
-							setTimeout(function(){
+					setTimeout(function(){
 
-								$.get({
-									url : '{{ url('api/daftar-keinginan/jumlah') }}',
-									success : function(res){
-										$('.wishlist_count').html(res.data);
-									}
-								})
+						$.get({
+							url : '{{ url('api/daftar-keinginan/jumlah') }}',
+							success : function(res){
+								$('.wishlist_count').html(res.data);
+							}
+						})
 
-							},1000)
-						}
-					},
-					statusCode : {
-						302 : function(){
-							window.location = '{{ route('masuk') }}?goto='+location
-						}
-					},
-					error: function(jqXHR, textStatus, errorThrown) {
-						console.log(jqXHR.status);
-						console.log(textStatus);
-						console.log(errorThrown);
-					}
-				});
+					},1000)
+				}
+			},
+			statusCode : {
+				302 : function(){
+					window.location = '{{ route('masuk') }}?goto='+location
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log(jqXHR.status);
+				console.log(textStatus);
+				console.log(errorThrown);
 			}
-
-		// });
-	</script>
+		});
+	}
+	// $(document).ready(funtion(){
+		$('#selengkapnya').on('click',function(e){
+			e.preventDefault();
+			$('#modalSelengkapnya').modal('show');
+		})
+	// });
+</script>
 </body>
 
 </html>

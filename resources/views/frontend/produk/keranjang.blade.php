@@ -27,6 +27,7 @@
 					<div class="col-lg-10 offset-lg-1">
 						<div class="cart_container">
 							<div class="cart_title">Keranjang Belanja</div>
+							@if(count($data) > 0)
 							<div class="cart_items">
 								<ul class="cart_list">
 									@foreach ($data as $d)
@@ -37,22 +38,10 @@
 												<div class="cart_item_title">Nama</div>
 												<div class="cart_item_text">{{$d->produk->nama}}</div>
 											</div>
-											{{-- <div class="cart_item_color cart_info_col">
-												<div class="cart_item_title">Color</div>
-												<div class="cart_item_text"><span style="background-color:#999999;"></span>Silver</div>
-											</div> --}}
-											{{-- <div class="cart_item_quantity cart_info_col">
-												<div class="cart_item_title">Quantity</div>
-												<div class="cart_item_text">1</div>
-											</div> --}}
 											<div class="cart_item_price cart_info_col">
 												<div class="cart_item_title">Harga</div>
 												<div class="cart_item_text">{{rp($d->produk->harga_jual)}}</div>
 											</div>
-											{{-- <div class="cart_item_total cart_info_col">
-												<div class="cart_item_title">Total</div>
-												<div class="cart_item_text">{{$2000}}</div>
-											</div> --}}
 										</div>
 									</li>
 									@endforeach
@@ -67,12 +56,29 @@
 								</div>
 							</div>
 
+							<form action="{{ route('checkout') }}" method="post">
+								<div class="cart_buttons">
+									<a href="{{ url('') }}">
+										<button type="button" class="button cart_button_clear">Lanjutkan Belanja</button>
+									</a>
+									@csrf
+									<button type="submit" class="button cart_button_checkout">Checkout</button>
+								</div>
+							</form>
+
+							@else
+
+							<div class="alert alert-danger mt-5">
+								Keranjang masih kosong
+							</div>
+
 							<div class="cart_buttons">
 								<a href="{{ url('') }}">
 									<button type="button" class="button cart_button_clear">Lanjutkan Belanja</button>
 								</a>
-								<button type="button" class="button cart_button_checkout">Checkout</button>
 							</div>
+
+							@endif
 						</div>
 					</div>
 				</div>

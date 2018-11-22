@@ -15,5 +15,6 @@ class Rekening extends Model
 		'nama_bank',
 		'cabang',
 		'no_rek',
+		'gambar',
 	];
 }

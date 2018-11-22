@@ -19,6 +19,7 @@ class CreateRekening extends Migration
             $table->string('nama_bank');
             $table->string('cabang');
             $table->string('no_rek');
+            $table->string('gambar');
         });
     }
 

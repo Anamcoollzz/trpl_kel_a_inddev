@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Produk;
+use App\Transaksi;
 use App\Keranjang;
 use App\ProdukGambar;
 use App\Kategori;
@@ -296,10 +297,37 @@ class ProdukController extends Controller
 
     public function beli(Request $r)
     {
+        $produk = Produk::find($r->id_produk);
+        if($produk->user_id == Auth::id()){
+            return redirect()->back()->with('error_msg', 'Dilarang membeli produk sendiri!');
+        }
         Keranjang::updateOrCreate([
             'id_produk'=>$r->id_produk,
             'user_id'=>$r->user()->id,
         ]);
         return redirect('keranjang-belanja');
     }
+
+    public function checkout(Request $r)
+    {
+        $keranjang = Keranjang::with('produk')->where('user_id', $r->user()->id)->get();
+        if(count($keranjang) <= 0)
+            return redirect()->back();
+        $transaksi = Transaksi::create([
+            'no'=>date('YmdHis'.mt_rand(10, 100)),
+            'user_id'=>Auth::id(),
+            'status'=>'waiting for payment',
+        ]);
+        foreach ($keranjang as $k) {
+            $transaksi->detail()->create([
+                'id_produk'=>$k->id_produk,
+                'nama_produk'=>$k->produk->nama,
+                'harga_asli'=>$k->produk->harga,
+                'harga_jual'=>$k->produk->harga_jual,
+            ]);
+        }
+        Keranjang::where('user_id', $r->user()->id)->delete();
+        return redirect()->route('transaksi.show',[$transaksi->id]);
+    }
+
 }
