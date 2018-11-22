@@ -287,9 +287,9 @@ class ProdukController extends Controller
     public function terpopuler()
     {
         return view('frontend.produk.by-kategori',[
-            'title'=>'Produk Terbaru',
-            'judul'=>'Produk Terbaru',
-            'data'=>Produk::verified()->latest()->paginate(20),
+            'title'=>'Produk Terpopuler',
+            'judul'=>'Produk Terpopuler',
+            'data'=>Produk::verified()->orderBy('dibeli', 'desc')->paginate(20),
             'total'=>Produk::verified()->count(),
             'terakhirDilihat'=>$this->terakhirDilihat(),
         ]);

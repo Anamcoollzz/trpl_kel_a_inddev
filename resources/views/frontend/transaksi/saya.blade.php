@@ -46,6 +46,8 @@
 									<td>
 										@if($d->status == 'waiting for payment' || $d->status == 'waiting payment verification')
 										<span class="badge badge-warning">{{$d->status}}</span>
+										@elseif($d->status == 'success')
+										<span class="badge badge-success">{{$d->status}}</span>
 										@else
 										<span class="badge">{{$d->status}}</span>
 										@endif
@@ -54,6 +56,8 @@
 									<td>
 										@if($d->status == 'waiting for payment')
 										<a href="{{ route('transaksi.show',[$d->id]) }}" class="btn btn-sm btn-primary">Bayar</a>
+										@else
+										<a href="{{ route('transaksi.show',[$d->id]) }}" class="btn btn-sm btn-success">Rincian</a>
 										@endif
 									</td>
 								</tr>

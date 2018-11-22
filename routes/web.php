@@ -93,6 +93,7 @@ Route::prefix('admin')->group(function(){
 		Route::put('/transaksi/{transaksi}/tolak', 'TransaksiController@tolak')->name('admin.transaksi.tolak');
 		Route::put('/transaksi/{transaksi}/verifikasi', 'TransaksiController@verifikasi')->name('admin.transaksi.verifikasi');
 		Route::get('/transaksi/{transaksi}/detail', 'TransaksiController@detail')->name('admin.transaksi.detail');
+		Route::put('/transaksi/{transaksi}/pembayaran-valid', 'TransaksiController@pembayaranValid')->name('pembayaran-valid');
 	});
 	Auth::routes();
 });

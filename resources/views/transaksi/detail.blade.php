@@ -4,6 +4,11 @@
 
 <div class="row">
 	<div class="col-md-12">
+		@if (session('success_msg'))
+		<div class="alert alert-success">
+			{{session('success_msg')}}
+		</div>
+		@endif
 		<div class="box box-primary">
 			<div class="box-header with-border">
 				<h3 class="box-title">{{ $title }}</h3>
@@ -30,6 +35,8 @@
 									<td>
 										@if($d->status == 'waiting for payment' || $d->status == 'waiting payment verification')
 										<span class="badge bg-warning">{{$d->status}}</span>
+										@elseif($d->status == 'success')
+										<span class="badge bg-success">{{$d->status}}</span>
 										@else
 										<span class="badge">{{$d->status}}</span>
 										@endif
@@ -88,7 +95,7 @@
 			</div>
 			@endif
 		</div>
-		@if($d->status == 'waiting payment verification')
+		@if($d->status != 'waiting for payment')
 		<div class="box box-primary">
 			<div class="box-header">
 				<h3 class="box-title">Pembayaran</h3>
@@ -109,7 +116,7 @@
 						<tr>
 							<td>Tanggal Transfer</td>
 							<td>:</td>
-							<td>{{$d->nama_pengirim}}</td>
+							<td>{{$d->tanggal_transfer}}</td>
 						</tr>
 						<tr>
 							<td>Bukti Transfer</td>
@@ -121,83 +128,28 @@
 					</tbody>
 				</table>
 			</div>
+			@if($d->status == 'waiting payment verification')
+			<div class="box-footer">
+				<form action="{{ route('pembayaran-valid',$d->id) }}" method="post">
+					@method('put')
+					@csrf
+					<button onclick="valid(event, this)" type="submit" class="btn btn-success btn-flat">Pembayaran Valid</button>
+				</form>
+			</div>
+			@endif
 		</div>
 		@endif
 	</div>
 </div>
 
-@if($d->status == 'pending')
-<div class="modal fade" id="modal-tolak">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">×</span>
-				</button>
-				<h4 class="modal-title">Alasan Penolakan</h4>
-			</div>
-			<form action="{{ route('admin.produk.tolak',[$d->id]) }}" method="post">
-				@csrf
-				@method('put')
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-md-12">
-							@include('form.vertikal.textarea',['id'=>'alasan_ditolak','label'=>'Alasan Ditolak','required'=>true])
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-flat btn-default pull-left" data-dismiss="modal">Tutup</button>
-					<button type="submit" class="btn btn-danger btn-flat">Tolak</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-
-<div class="modal fade" id="modal-verifikasi">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">×</span>
-				</button>
-				<h4 class="modal-title">Verifikasi Produk</h4>
-			</div>
-			<form action="{{ route('admin.produk.verifikasi',[$d->id]) }}" method="post" enctype="multipart/form-data">
-				@csrf
-				@method('put')
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-md-12">
-							@include('form.vertikal.input',['id'=>'link_demo','label'=>'Link Demo','required'=>true])
-						</div>
-						<div class="col-md-12">
-							@include('form.vertikal.input-arsip',['id'=>'projek_bundling','label'=>'Projek Bundling Dokumentasi','required'=>true])
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-flat btn-default pull-left" data-dismiss="modal">Tutup</button>
-					<button type="submit" class="btn btn-primary btn-flat">Verifikasi</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-
-@endif
-
 @endsection
 
 @push('script')
 <script>
-	@if($errors->has('alasan_ditolak'))
-	$('[data-target="#modal-tolak"]').trigger('click');
-	@endif
-
-	@if($errors->has('link_demo') || $errors->has('projek_bundling'))
-	$('[data-target="#modal-verifikasi"]').trigger('click');
-	@endif
+	function valid(e, el){
+		e.preventDefault();
+		confirm('Anda yakin?')
+			$(el).parents('form').submit();
+	}
 </script>
 @endpush

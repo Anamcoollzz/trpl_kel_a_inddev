@@ -62,15 +62,19 @@
 
 							<!-- Order Total -->
 							<div class="order_total">
-								<span class="badge badge-warning mt-4" style="text-align: left; float: left;">
-									{{$transaksi->status}}
-								</span>
+								@if($transaksi->status == 'waiting for payment' || $transaksi->status == 'waiting payment verification')
+								<span  style="text-align: left; float: left;" class="mt-4 badge badge-warning">{{$transaksi->status}}</span>
+								@elseif($transaksi->status == 'success')
+								<span  style="text-align: left; float: left;" class="mt-4 badge badge-success">{{$transaksi->status}}</span>
+								@else
+								<span  style="text-align: left; float: left;" class="mt-4 badge">{{$transaksi->status}}</span>
+								@endif
 								<div class="order_total_content text-md-right">
 									<div class="order_total_title">Total Yang Harus Dibayar :</div>
 									<div class="order_total_amount">{{rp($total)}}</div>
 								</div>
 							</div>
-							@if($d->status == 'waiting for payment')
+							@if($transaksi->status == 'waiting for payment')
 							<div class="row mt-5">
 								<div class="col-md-12 mb-3">
 									<div class="card">
@@ -105,7 +109,7 @@
 								@endforeach
 							</div>
 
-							@elseif($transaksi->status == 'waiting payment verification')
+							@else
 							<div class="card mt-5">
 								<div class="card-body">
 									<h3 class="text-center">Pembayaran berhasil dilakukan</h3>
@@ -135,18 +139,31 @@
 											</tr>
 										</tbody>
 									</table>
-
+									@if($transaksi->status != 'success')
 									<div class="alert alert-info">
 										Ketika pembayaran berhasil diverifikasi maka tombol unduh akan aktif
 									</div>
+									@endif
 								</div>
 							</div>
 
 							<div class="card mt-5">
 								<div class="card-body">
+									@if($transaksi->status == 'success')
+									<a href="" class="btn btn-success ">
+										Unduh Program
+									</a>
+									<a href="" class="btn btn-danger ">
+										Unduh Dokumentasi
+									</a>
+									<a style="background-color: #9C0CC5; border-color: #9C0CC5" href="" class="btn btn-success ">
+										Unduh Program & Dokumentasi
+									</a>
+									@else
 									<a href="" class="btn btn-success disabled">Unduh Program</a>
 									<a href="" class="btn btn-danger disabled">Unduh Dokumentasi</a>
 									<a style="background-color: #9C0CC5; border-color: #9C0CC5" href="" class="btn btn-success disabled">Unduh Program & Dokumentasi</a>
+									@endif
 								</div>
 							</div>
 							

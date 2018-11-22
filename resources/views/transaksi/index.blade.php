@@ -33,6 +33,8 @@
         <td>
             @if($d->status == 'waiting for payment' || $d->status == 'waiting payment verification')
             <span class="badge bg-warning">{{$d->status}}</span>
+            @elseif($d->status == 'success')
+            <span class="badge bg-success">{{$d->status}}</span>
             @else
             <span class="badge">{{$d->status}}</span>
             @endif

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Transaksi;
+use App\Produk;
 
 class TransaksiController extends Controller
 {
@@ -31,6 +32,24 @@ class TransaksiController extends Controller
             'modul_link'=>route('admin.transaksi.index'),
             'modul'=>'Transaksi',
         ]);
+    }
+
+    public function pembayaranValid(Request $r, Transaksi $transaksi)
+    {
+    	$transaksi->update([
+    		'status'=>'success',
+    	]);
+    	foreach($transaksi->detail as $d){
+    		$produk = Produk::find($d->produk->id);
+    		$produk->dibeli = ++$produk->dibeli;
+    		$produk->save();
+    	}
+    	Notifikasi::create([
+    		'user_id'=>$transaksi->user_id,
+    		'isi'=>'Transaksi dengan no '.$transaksi->no.' berhasil diverifikasi.',
+    		'type'=>'success',
+    	]);
+    	return redirect()->back()->with('Pembayaran diterima :)');
     }
 
 }
