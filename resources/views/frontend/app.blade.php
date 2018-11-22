@@ -4124,6 +4124,7 @@
 	</div>
 
 	@include('frontend.footer')
+	@yield('modal')
 
 </div>
 

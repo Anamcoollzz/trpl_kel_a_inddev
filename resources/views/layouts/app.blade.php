@@ -22,6 +22,7 @@
 		@yield('content')
 		@include('frontend.footer')
 	</div>
+	@yield('modal')
 	<script src="{{asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
 	<script src="{{asset('frontend/styles/bootstrap4/popper.js')}}"></script>
 	<script src="{{asset('frontend/styles/bootstrap4/bootstrap.min.js')}}"></script>

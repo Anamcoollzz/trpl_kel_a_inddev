@@ -94,12 +94,15 @@
 													</div> --}}
 													@if($d->status == 'verified')
 													<a href="{{ route('produk.show',[$d->id]) }}">
-													<button class="product_cart_button" style="border-radius: 0;">Lihat</button>
+														<button class="product_cart_button" style="border-radius: 0;">Lihat</button>
 													</a>
 													@endif
 													@if($d->status == 'pending')
 													<a href="{{ route('produk.ubah',[$d->id]) }}">
-													<button class="product_cart_button ubah_produk_button">Ubah</button>
+														<button class="product_cart_button ubah_produk_button">Ubah</button>
+													</a>
+													<a onclick="hapus(event,'{{ route('produk.destroy',[$d->id]) }}')">
+														<button class="product_cart_button ubah_produk_button" style="background-color: #CB1313;">Hapus</button>
 													</a>
 													@endif
 												</div>
@@ -122,7 +125,11 @@
 			</div>
 		</div>
 		@include('frontend.footer')
-
+		<form action="" id="form-hapus" method="post">
+			@csrf
+			@method('delete')
+			<input type="hidden" name="id">
+		</form>
 	</div>
 
 	<script src="{{asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
@@ -138,6 +145,14 @@
 	<script src="{{asset('frontend/plugins/easing/easing.js')}}"></script>
 	<script src="{{asset('frontend/js/custom.js')}}"></script>
 	@include('frontend.script')
+	<script>
+		function hapus(e, link){
+			if(confirm('Anda yakin?')){
+				$('#form-hapus').attr('action', link);
+				$('#form-hapus').submit();
+			}
+		}
+	</script>
 </body>
 
 </html>

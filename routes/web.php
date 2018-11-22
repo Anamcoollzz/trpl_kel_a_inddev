@@ -27,10 +27,15 @@ Route::middleware('tahap_satu_selesai')->group(function(){
 				Route::put('/profil/update-password', 'ProfilController@updatePassword')->name('profil.update-password');
 
 				Route::post('/produk/hapus-gambar','ProdukController@hapusGambar')->name('produk.hapus-gambar');
+				Route::post('/produk/hapus-screenshot','ProdukController@hapusScreenshot')->name('produk.hapus-screenshot');
+				Route::delete('/produk/hapus-logo','ProdukController@hapusLogo')->name('produk.hapus-logo');
 				Route::get('/produk/saya','ProdukController@saya')->name('produk.saya');
 				Route::get('/produk/saya/{produk}/ubah', 'ProdukController@edit')->name('produk.ubah');
+				Route::put('/produk/saya/{produk}', 'ProdukController@update')->name('produk.update');
+				Route::delete('/produk/saya/{produk}', 'ProdukController@destroy')->name('produk.destroy');
 				Route::resource('produk','ProdukController')->except('show','edit','update');
 				Route::post('/produk/upload-gambar','ProdukController@uploadGambar')->name('produk.upload-gambar');
+				Route::put('/produk/upload-gambar','ProdukController@uploadGambar');
 			});
 
 		});

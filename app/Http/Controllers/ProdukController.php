@@ -155,7 +155,43 @@ class ProdukController extends Controller
      */
     public function update(Request $request, Produk $produk)
     {
-        //
+        // return $request->all();
+        $request->validate([
+            'nama'=>'required',
+            'tahun_dibuat'=>'required',
+            'tahun_selesai_dibuat'=>'required',
+            'harga'=>'required|numeric|min:50000',
+            'id_kategori'=>'required',
+            'deskripsi'=>'required',
+        ]);
+        $data = [
+            "nama" => $request->nama,
+            "id_kategori" => $request->id_kategori,
+            "tahun_dibuat" => $request->tahun_dibuat,
+            "tahun_selesai_dibuat" => $request->tahun_selesai_dibuat,
+            "harga" => $request->harga,
+            "deskripsi" => $request->deskripsi,
+            'user_id'=>$request->user()->id,
+        ];
+        if($request->logo){
+            $data['logo'] = uploadPath($request->file('logo'),'produk/logo');
+        }
+        if($request->file_projek){
+            $data["file_path"] = uploadPath($request->file('file_projek'), 'produk/projek');
+        }
+        if($request->file_dokumentasi){
+            $data['panduan_path'] = uploadPath($request->file('file_dokumentasi'), 'produk/dokumentasi');
+        }
+        $produk->update($data);
+        if($request->nama_gambar){
+            foreach ($request->nama_gambar as $url) {
+                ProdukGambar::create([
+                    'url'=>$url,
+                    'id_produk'=>$produk->id,
+                ]);
+            }   
+        }
+        return redirect()->route('produk.saya')->with('success_msg','Produk berhasil diperbarui, menunggu verifikasi administrator');
     }
 
     /**
@@ -166,7 +202,8 @@ class ProdukController extends Controller
      */
     public function destroy(Produk $produk)
     {
-        //
+        $produk->delete();
+        return redirect()->route('produk.saya')->with('success_msg','Produk berhasil dihapus');
     }
 
     public function uploadGambar(Request $r)
@@ -183,6 +220,20 @@ class ProdukController extends Controller
         $path = str_replace('//','/','public/'.str_replace(url('/storage'), '', $r->gambar));
         Storage::delete($path);
         return 'delete success';
+    }
+
+    public function hapusScreenshot(Request $r)
+    {
+        ProdukGambar::find($r->id)->delete();
+        return 'screenshot delete success';
+    }
+
+    public function hapusLogo(Request $r)
+    {
+        Produk::find($r->id)->update([
+            'logo'=>null,
+        ]);
+        return 'logo delete success';
     }
 
     public function byKategori($uriRouting)
