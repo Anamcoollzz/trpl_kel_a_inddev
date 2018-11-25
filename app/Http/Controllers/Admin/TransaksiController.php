@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Transaksi;
 use App\Produk;
+use App\Notifikasi;
 
 class TransaksiController extends Controller
 {
@@ -46,8 +47,8 @@ class TransaksiController extends Controller
     	}
     	Notifikasi::create([
     		'user_id'=>$transaksi->user_id,
-    		'isi'=>'Transaksi dengan no '.$transaksi->no.' berhasil diverifikasi.',
-    		'type'=>'success',
+    		'isi'=>'Transaksi dengan no <a href="'.route('transaksi.show', [$transaksi->id]).'">'.$transaksi->no.'</a> berhasil diverifikasi. Silakan unduh untuk program yang sudah dibeli',
+    		'tipe'=>'success',
     	]);
     	return redirect()->back()->with('Pembayaran diterima :)');
     }

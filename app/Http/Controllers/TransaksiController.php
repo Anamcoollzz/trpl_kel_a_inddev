@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Transaksi;
+use App\Notifikasi;
 use App\Rekening;
 use Illuminate\Http\Request;
 use Auth;
@@ -116,5 +117,14 @@ class TransaksiController extends Controller
             'rekening_admin'=>$request->rekening,
         ]);
         return redirect()->back()->with('success_msg','Pembayaran berhasil dilakukan, menunggu verifikasi admin');
+    }
+
+    public function invoice(Transaksi $transaksi)
+    {
+        // kk
+        $transaksi->load('detail');
+        return view('frontend.transaksi.invoice',[
+            'transaksi'=>$transaksi,
+        ]);
     }
 }

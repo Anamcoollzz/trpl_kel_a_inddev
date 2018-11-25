@@ -55,19 +55,6 @@
 												<div class="cart_item_text">{{rp($d->harga_jual)}}</div>
 											</div>
 										</div>
-										@if($transaksi->status == 'success')
-										<center>
-											<a href="{{$d->produk->file_path}}" class="btn btn-success ">
-												Unduh Program
-											</a>
-											<a href="{{$d->produk->panduan_path}}" class="btn btn-danger ">
-												Unduh Dokumentasi
-											</a>
-											<a style="background-color: #9C0CC5; border-color: #9C0CC5" href="{{$d->produk->bundling_path}}" class="btn btn-success ">
-												Unduh Program & Dokumentasi
-											</a>
-										</center>
-										@endif
 									</li>
 									@endforeach
 								</ul>
@@ -156,21 +143,14 @@
 									<div class="alert alert-info">
 										Ketika pembayaran berhasil diverifikasi maka tombol unduh akan aktif
 									</div>
-									@else
-									<center>
-										<a target="_blank" href="{{route('invoice',[$transaksi->id])}}" class="btn btn-success"><i class="fa fa-print"></i> Invoice</a>
-									</center>
 									@endif
 								</div>
 							</div>
 
-							@if($transaksi->status != 'success')
-
-
 							<div class="card mt-5">
 								<div class="card-body">
-									{{-- @if($transaksi->status == 'success')
-									<a href="{{$transaksi->detail}}" class="btn btn-success ">
+									@if($transaksi->status == 'success')
+									<a href="" class="btn btn-success ">
 										Unduh Program
 									</a>
 									<a href="" class="btn btn-danger ">
@@ -179,15 +159,13 @@
 									<a style="background-color: #9C0CC5; border-color: #9C0CC5" href="" class="btn btn-success ">
 										Unduh Program & Dokumentasi
 									</a>
-									@else --}}
+									@else
 									<a href="" class="btn btn-success disabled">Unduh Program</a>
 									<a href="" class="btn btn-danger disabled">Unduh Dokumentasi</a>
 									<a style="background-color: #9C0CC5; border-color: #9C0CC5" href="" class="btn btn-success disabled">Unduh Program & Dokumentasi</a>
-									{{-- @endif --}}
+									@endif
 								</div>
 							</div>
-
-							@endif
 							
 							@endif
 

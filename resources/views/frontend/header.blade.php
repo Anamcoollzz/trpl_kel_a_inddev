@@ -1,19 +1,19 @@
 {{-- @php
 	$_pengaturan = \App\Pengaturan
-@endphp --}}
-<header class="header">
+	@endphp --}}
+	<header class="header">
 
-	<!-- Top Bar -->
+		<!-- Top Bar -->
 
-	<div class="top_bar">
-		<div class="container">
-			<div class="row">
-				<div class="col d-flex flex-row">
-					<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('images/phone.png')}}" alt=""></div>{{\App\Pengaturan::where('key','no_telp')->first()->value}}</div>
-					<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('images/mail.png')}}" alt=""></div><a href="mailto:fastsales@gmail.com">{{\App\Pengaturan::where('key','email')->first()->value}}</a></div>
-					<div class="top_bar_content ml-auto">
-						<div class="top_bar_menu">
-							<!-- <ul class="standard_dropdown top_bar_dropdown"> -->
+		<div class="top_bar">
+			<div class="container">
+				<div class="row">
+					<div class="col d-flex flex-row">
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('images/phone.png')}}" alt=""></div>{{\App\Pengaturan::where('key','no_telp')->first()->value}}</div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('images/mail.png')}}" alt=""></div><a href="mailto:fastsales@gmail.com">{{\App\Pengaturan::where('key','email')->first()->value}}</a></div>
+						<div class="top_bar_content ml-auto">
+							<div class="top_bar_menu">
+								<!-- <ul class="standard_dropdown top_bar_dropdown"> -->
 									<!-- <li>
 										<a href="#">English<i class="fas fa-chevron-down"></i></a>
 										<ul>
@@ -31,10 +31,12 @@
 										</ul>
 									</li> -->
 									<!-- </ul> -->
-									<a style="color: black;" href="">
+									@auth
+									<a style="color: black;" href="{{ route('notifikasi') }}">
 										<i class="fas fa-bell"></i>
-										<span></span>
+										<span>{{Auth::user()->notifikasi()->where('sudah_dibaca','belum')->count()}}</span>
 									</a>
+									@endauth
 								</div>
 								<div class="top_bar_user">
 									<div class="user_icon"><img src="{{asset('images/user.svg')}}" alt=""></div>

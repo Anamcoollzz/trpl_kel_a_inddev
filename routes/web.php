@@ -39,8 +39,12 @@ Route::middleware('tahap_satu_selesai')->group(function(){
 				Route::post('/produk/checkout','ProdukController@checkout')->name('checkout');
 
 				# TRANSAKSI
+				Route::get('/transaksi/{transaksi}/invoice', 'TransaksiController@invoice')->name('invoice');
 				Route::resource('transaksi', 'TransaksiController');
 				Route::put('/transaksi/bayar/{transaksi}', 'TransaksiController@bayar')->name('bayar');
+
+				# NOTIFIKASI
+				Route::get('/notifikasi', 'NotifikasiController@index')->name('notifikasi');
 			});
 
 		});
