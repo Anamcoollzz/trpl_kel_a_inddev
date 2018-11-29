@@ -156,7 +156,6 @@ class ProdukController extends Controller
      */
     public function update(Request $request, Produk $produk)
     {
-        // return $request->all();
         $request->validate([
             'nama'=>'required',
             'tahun_dibuat'=>'required',
