@@ -65,6 +65,7 @@ class RekeningController extends Controller
             'nama_bank'=>$request->nama_bank,
             'cabang'=>$request->cabang,
             'no_rek'=>$request->no_rek,
+            'gambar'=>url('storage/bank').'/'.strtolower($request->nama_bank).'.png',
         ];
         Rekening::create($data);
         return redirect()->route('rekening.index')->with('success_msg', 'Rekening berhasil dibuat');
@@ -127,6 +128,7 @@ class RekeningController extends Controller
             'nama_bank'=>$request->nama_bank,
             'cabang'=>$request->cabang,
             'no_rek'=>$request->no_rek,
+            'gambar'=>url('storage/bank').'/'.strtolower($request->nama_bank).'.png',
         ]);
         return redirect()->route('rekening.index')->with('success_msg', 'Rekening berhasil diperbarui');
     }

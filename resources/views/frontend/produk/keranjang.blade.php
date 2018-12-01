@@ -36,7 +36,11 @@
 										<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
 											<div class="cart_item_name cart_info_col">
 												<div class="cart_item_title">Nama</div>
-												<div class="cart_item_text">{{$d->produk->nama}}</div>
+												<div class="cart_item_text">
+													<a style="color: black" href="{{ url('produk/'.$d->id_produk) }}">
+														{{$d->produk->nama}}
+													</a>
+												</div>
 											</div>
 											<div class="cart_item_price cart_info_col">
 												<div class="cart_item_title">Harga</div>
