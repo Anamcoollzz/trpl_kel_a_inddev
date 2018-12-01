@@ -59,6 +59,7 @@ Route::get('/produk/terbaru','ProdukController@terbaru')->name('produk.terbaru')
 Route::get('/produk/terpopuler','ProdukController@terpopuler')->name('produk.terpopuler');
 Route::resource('produk','ProdukController')->only('show');
 Route::get('/keluar','AuthController@keluar')->name('member-keluar');
+Route::get('/developer/{email}','UserController@profilDeveloper');
 
 Route::middleware('auth')->group(function(){
 

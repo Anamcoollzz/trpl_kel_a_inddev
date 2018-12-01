@@ -22,34 +22,34 @@
 			@endif
 			<div class="col-lg-10 offset-lg-1">
 				<div class="contact_form_container">
-					<div class="contact_form_title">Profil Saya</div>
+					<div class="contact_form_title">{{$title}}</div>
 					<table class="table">
 						<tbody>
 							<tr>
 								<td>Nama</td>
-								<td>{{Auth::user()->nama}}</td>
+								<td>{{$developer->nama}}</td>
 							</tr>
 							<tr>
 								<td>Jenis Kelamin</td>
-								<td>{{Auth::user()->jenis_kelamin}}</td>
+								<td>{{$developer->jenis_kelamin}}</td>
 							</tr>
 							<tr>
 								<td>No HP</td>
-								<td>{{Auth::user()->no_hp}}</td>
+								<td>{{$developer->no_hp}}</td>
 							</tr>
 							<tr>
 								<td>Alamat</td>
-								<td>{{Auth::user()->alamat}}</td>
+								<td>{{$developer->alamat}}</td>
 							</tr>
 							<tr>
 								<td>Jenis Member</td>
-								<td>{{Auth::user()->tingkat_member}}</td>
+								<td>{{$developer->tingkat_member}}</td>
 							</tr>
 							<tr>
 								<td>Email</td>
 								<td>
-									<a href="mailto:{{Auth::user()->email}}">
-										{{Auth::user()->email}}
+									<a href="mailto:{{$developer->email}}">
+										{{$developer->email}}
 									</a>
 								</td>
 							</tr>
@@ -61,16 +61,10 @@
 							</tr>
 							<tr>
 								<td>Waktu Mendaftar</td>
-								<td>{{Auth::user()->created_at}}</td>
-							</tr>
-							<tr>
-								<td>Terakhir diperbarui</td>
-								<td>{{Auth::user()->updated_at}}</td>
+								<td>{{$developer->created_at}}</td>
 							</tr>
 						</tbody>
 					</table>
-					<a href="{{route('profil.ubah')}}" class="btn btn-primary">Ubah Profil</a>
-					<a href="{{route('profil.ubah-password')}}" class="btn btn-primary">Ubah Password</a>
 				</div>
 			</div>
 		</div>

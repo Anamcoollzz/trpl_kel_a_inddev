@@ -123,7 +123,7 @@
 							<!-- Product Item -->
 							<div class="product_item">
 								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{$d->logo}}" alt="{{$d->nama}}"></div>
+								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img style="max-width: 100px;" src="{{$d->logo}}" alt="{{$d->nama}}"></div>
 								<div class="product_content">
 									<div class="product_price">{{$d->harga_jual}}</div>
 									<div class="product_name"><div><a href="{{$d->url}}" tabindex="0">{{$d->nama}}</a></div></div>

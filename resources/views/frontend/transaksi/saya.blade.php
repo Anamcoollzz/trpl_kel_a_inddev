@@ -26,6 +26,7 @@
 				<div class="row">
 					<div class="col-md-10 offset-1">
 						<h3>Transaksi Saya</h3>
+						@if(count($data) > 0)
 						<table class="table">
 							<thead>
 								<tr>
@@ -64,6 +65,11 @@
 								@endforeach
 							</tbody>
 						</table>
+						@else
+						<div class="alert alert-danger">
+							Anda belum transaksi :(
+						</div>
+						@endif
 					</div>
 				</div>
 			</div>

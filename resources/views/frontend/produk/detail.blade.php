@@ -38,6 +38,7 @@
 					<!-- Images -->
 					<div class="col-lg-2 order-lg-1 order-2">
 						<ul class="image_list">
+							<li data-image="{{$d->logo}}"><img src="{{$d->logo}}" alt="{{$d->nama}}"></li>
 							@foreach ($d->screenshots as $s)
 							<li data-image="{{$s->url}}"><img src="{{$s->url}}" alt="{{$d->nama}}"></li>
 							@endforeach
@@ -46,7 +47,11 @@
 
 					<!-- Selected Image -->
 					<div class="col-lg-5 order-lg-2 order-1">
-						<div class="image_selected"><img src="{{$d->logo}}" alt="{{$d->nama}}"></div>
+						<div class="image_selected">
+							<a href="{{$d->logo}}" target="_blank">
+								<img src="{{$d->logo}}" alt="{{$d->nama}}" style="max-width: 300px;">
+							</a>
+						</div>
 					</div>
 
 					<!-- Description -->
@@ -62,6 +67,9 @@
 									<a style="color: #6A98E5; cursor: pointer;" href="#" id="selengkapnya">
 										selengkapnya
 									</a>
+									<br>
+									<br>
+									Didevelop oleh <i class="fa fa-user"></i> <a href="{{ url('developer/'.$d->user->email) }}">{{$d->user->nama}}</a>
 								</p>
 							</div>
 							<div class="order_info d-flex flex-row" style="margin-top: 0;">
@@ -75,7 +83,7 @@
 									</form>
 									@if($d->link_demo)
 									<a href="{{$d->link_demo}}" target="_blank">
-									<button type="button" style="background-color: #CD3333" class="button cart_button">Demo</button>
+										<button type="button" style="background-color: #CD3333" class="button cart_button">Demo</button>
 									</a>
 									@endif
 									<div class="product_fav {{$isWishlist?'active':''}}" onclick="tambahKeWishlist({{$d->id}})"><i class="fas fa-heart"></i></div>
