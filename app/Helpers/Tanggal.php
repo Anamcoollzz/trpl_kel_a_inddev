@@ -54,3 +54,8 @@ function formatIndo($tgl)
 	}
 	return tgl($tgl).'-'.bulan($tgl).'-'.tahun($tgl);
 }
+
+function waktuIndo($waktu)
+{
+	return tglIndo($waktu).' '.substr($waktu, 11);
+}

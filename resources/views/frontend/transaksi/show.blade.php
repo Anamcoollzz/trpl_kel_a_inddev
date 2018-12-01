@@ -67,11 +67,29 @@
 												Unduh Program & Dokumentasi
 											</a>
 										</center>
+										@else
+										<center>
+											<button class="btn btn-success disabled">
+												Unduh Program
+											</button>
+											<button class="btn btn-danger disabled">
+												Unduh Dokumentasi
+											</button>
+											<button style="background-color: #9C0CC5; border-color: #9C0CC5" class="btn btn-success disabled">
+												Unduh Program & Dokumentasi
+											</button>
+										</center>
 										@endif
 									</li>
 									@endforeach
 								</ul>
 							</div>
+							<br><br>
+							@if($transaksi->status != 'success')
+							<div class="alert alert-info">
+								Tombol unduh akan aktif jika sudah melakukan pembayaran dan berhasil diverifikasi administrator :)
+							</div>
+							@endif
 
 							<!-- Order Total -->
 							<div class="order_total">
@@ -103,7 +121,7 @@
 								</div>
 								@foreach ($rekening as $r)
 								<div class="col-md-4">
-									<div class="card">
+									<div class="card mb-3">
 										<div class="card-body">
 											<center>
 												<img src="{{$r->gambar}}" style="max-width: 150px;" alt="{{$r->atas_nama}}">
@@ -153,9 +171,9 @@
 										</tbody>
 									</table>
 									@if($transaksi->status != 'success')
-									<div class="alert alert-info">
+									{{-- <div class="alert alert-info">
 										Ketika pembayaran berhasil diverifikasi maka tombol unduh akan aktif
-									</div>
+									</div> --}}
 									@else
 									<center>
 										<a target="_blank" href="{{route('invoice',[$transaksi->id])}}" class="btn btn-success"><i class="fa fa-print"></i> Invoice</a>
@@ -164,30 +182,18 @@
 								</div>
 							</div>
 
-							@if($transaksi->status != 'success')
+							{{-- @if($transaksi->status != 'success')
 
 
 							<div class="card mt-5">
 								<div class="card-body">
-									{{-- @if($transaksi->status == 'success')
-									<a href="{{$transaksi->detail}}" class="btn btn-success ">
-										Unduh Program
-									</a>
-									<a href="" class="btn btn-danger ">
-										Unduh Dokumentasi
-									</a>
-									<a style="background-color: #9C0CC5; border-color: #9C0CC5" href="" class="btn btn-success ">
-										Unduh Program & Dokumentasi
-									</a>
-									@else --}}
 									<a href="" class="btn btn-success disabled">Unduh Program</a>
 									<a href="" class="btn btn-danger disabled">Unduh Dokumentasi</a>
 									<a style="background-color: #9C0CC5; border-color: #9C0CC5" href="" class="btn btn-success disabled">Unduh Program & Dokumentasi</a>
-									{{-- @endif --}}
 								</div>
 							</div>
 
-							@endif
+							@endif --}}
 							
 							@endif
 
