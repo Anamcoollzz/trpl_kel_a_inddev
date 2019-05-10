@@ -37,14 +37,17 @@
 								<input value="{{old('email')?old('email'):Auth::user()->email}}" type="email" id="email" class="form-control" placeholder="Email" name="email">
 							</div>
 							<div class="col-md-4">
-								<select name="jenis_kelamin">
+								<input style="margin-top: 15px;" value="{{old('nik')?old('nik'):Auth::user()->nik}}" type="number" id="nik" class="form-control" placeholder="NIK" required="required" name="nik">
+							</div>
+							<div class="col-md-4">
+								<select style="margin-top: 15px;" name="jenis_kelamin">
 									<option value="">Pilih Jenis Kelamin</option>
 									<option value="Laki-laki">Laki-laki</option>
 									<option value="Perempuan">Perempuan</option>
 								</select>
 							</div>
 							<div class="col-md-4">
-								<select name="jenis_member">
+								<select style="margin-top: 15px;" name="jenis_member">
 									<option value="">Pilih Jenis Member</option>
 									<option value="member">Biasa</option>
 									<option value="cv">CV</option>

@@ -67,10 +67,17 @@
 								<td>Terakhir diperbarui</td>
 								<td>{{Auth::user()->updated_at}}</td>
 							</tr>
+							<tr>
+								<td>Saldo</td>
+								<td>{{rp(Auth::user()->saldo)}}</td>
+							</tr>
+							
 						</tbody>
 					</table>
 					<a href="{{route('profil.ubah')}}" class="btn btn-primary">Ubah Profil</a>
 					<a href="{{route('profil.ubah-password')}}" class="btn btn-primary">Ubah Password</a>
+					<a href="{{route('cairkan-saldo')}}" class="btn btn-primary">Cairkan Saldo</a>
+					<a href="{{route('rekeningku')}}" class="btn btn-primary">Rekening</a>
 				</div>
 			</div>
 		</div>

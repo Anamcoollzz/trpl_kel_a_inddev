@@ -1,6 +1,11 @@
 @extends('my-view')
 @section('other-box')
-@yield('filter')
+<a href="?status=verified" class="btn btn-success btn-flat">Verified</a>
+<a href="?status=pending" class="btn btn-warning btn-flat">Pending</a>
+<a href="?time=today" class="btn bg-maroon btn-flat">Hari ini</a>
+<a href="?time=this_month" class="btn bg-purple btn-flat">Bulan ini</a>
+<br>
+<br>
 @endsection
 @section('table')
 <thead>
@@ -11,6 +16,7 @@
         <th>No HP</th>
         <th>Alamat</th>
         <th>Status</th>
+        <th>Waktu Daftar</th>
         <th>Aksi</th>
     </tr>
 </thead>
@@ -22,6 +28,7 @@
         <th>No HP</th>
         <th>Alamat</th>
         <th>Status</th>
+        <th>Waktu Daftar</th>
         <th>Aksi</th>
     </tr>
 </tfoot>
@@ -42,12 +49,24 @@
             <span class="label bg-red">{{$d->status}}</span>
             @endif
         </td>
+        <td>{{ $d->created_at }}</td>
         <td>
             @if($d->status == 'pending')
             <a href="{{route('verifikasi-member',[$d->id])}}" class="btn btn-warning btn-flat">Verifikasi</a>
             @endif
+            <a href="{{route('blokir-member',[$d->id])}}" class="btn btn-danger btn-flat">Blokir</a>
         </td>
     </tr>
     @endforeach
 </tbody>
+@endsection
+
+@section('custom_dt')
+    <script>
+    $(function () {
+        $("#dt").DataTable({
+            "order" : [[6, "desc"]]
+        });
+    });
+</script>
 @endsection

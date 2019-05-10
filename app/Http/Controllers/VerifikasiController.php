@@ -52,6 +52,7 @@ class VerifikasiController extends Controller
 			'alamat'=>$r->alamat,
 			'jenis_kelamin'=>$r->jenis_kelamin,
 			'tingkat_member'=>$r->jenis_member,
+			'nik'=>$r->nik,
 			'tahap_1'=>'sudah',
 		]);
 		return redirect()->route('tahap2');

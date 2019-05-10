@@ -43,6 +43,9 @@
 						</div> --}}
 						<div class="contact_form_button">
 							<button type="submit" class="button contact_submit_button">Daftar</button>
+							<a href="{{ route('masuk') }}">
+								<button ty class="button contact_submit_button" style="background-color: #BE0A0A; border-color: #BE0A0A">Masuk</button>
+							</a>
 							{{-- <a href="{{route('form-masuk')}}" class="button contact_submit_button">Masuk</a> --}}
 						</div>
 					</form>

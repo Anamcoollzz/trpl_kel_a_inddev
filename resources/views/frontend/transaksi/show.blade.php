@@ -66,6 +66,9 @@
 											<a style="background-color: #9C0CC5; border-color: #9C0CC5" href="{{$d->produk->bundling_path}}" class="btn btn-success ">
 												Unduh Program & Dokumentasi
 											</a>
+											<a style="background-color: #C5490C; border-color: #C5490C" href="{{url('chat-developer/'.$d->produk->developer->email)}}" class="btn btn-success ">
+												Chat Developer
+											</a>
 										</center>
 										@else
 										<center>

@@ -44,6 +44,11 @@ class Produk extends Model
 		return $this->belongsTo('App\User','user_id');
 	}
 
+	public function developer()
+	{
+		return $this->belongsTo('App\User','user_id');
+	}
+
 	public function screenshots()
 	{
 		return $this->hasMany('App\ProdukGambar','id_produk');

@@ -15,7 +15,11 @@ class DaftarKeinginanController extends Controller
      */
     public function index()
     {
-        //
+        $daftarKeinginan = DaftarKeinginan::where('user_id',Auth::id())->latest()->get();
+        return view('frontend.daftar-keinginan.saya',[
+            'title'=>'Daftar Keinginan',
+            'data'=>$daftarKeinginan,
+        ]);
     }
 
     /**
@@ -23,9 +27,12 @@ class DaftarKeinginanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function hapus(DaftarKeinginan $daftar)
     {
-        //
+        if($daftar->user_id == Auth::id()){
+            $daftar->delete();
+        }
+        return redirect()->back();
     }
 
     /**
@@ -41,10 +48,10 @@ class DaftarKeinginanController extends Controller
         ]);
         if(is_null(Auth::user())){
             return [
-            'message'=>'Masuk terlebih dahulu',
-            'status'=>'ok',
-            'status_code'=>302,
-        ];
+                'message'=>'Masuk terlebih dahulu',
+                'status'=>'ok',
+                'status_code'=>302,
+            ];
         }
         $id = Auth::id();
         $dk = DaftarKeinginan::where('id_produk',$request->id_produk)

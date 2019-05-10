@@ -37,12 +37,11 @@
 
 			<div class="col-lg-2">
 				<div class="footer_column">
+					{{-- <div class="footer_title">Produk</div> --}}
 					<ul class="footer_list footer_list_2">
-						<li><a href="#">Menu</a></li>
-						<li><a href="#">Menu</a></li>
-						<li><a href="#">Menu</a></li>
-						<li><a href="#">Menu</a></li>
-						<li><a href="#">Menu</a></li>
+						@foreach (\App\Produk::where('status','verified')->take(5)->inRandomOrder()->get() as $p)
+						<li><a href="{{$p->url}}">{{$p->nama}}</a></li>
+						@endforeach
 					</ul>
 				</div>
 			</div>

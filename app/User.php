@@ -29,6 +29,7 @@ class User extends Authenticatable
         'tahap_3',
         'jenis_kelamin',
         'tingkat_member',
+        'nik',
     ];
 
     /**
@@ -58,5 +59,10 @@ class User extends Authenticatable
     public function keranjang()
     {
         return $this->hasMany('App\Keranjang');
+    }
+
+    public function scopeVerified($q)
+    {
+        return $q->where('status','verified');
     }
 }

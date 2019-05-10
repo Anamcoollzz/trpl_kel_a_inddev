@@ -65,6 +65,7 @@
 							</tr>
 						</tbody>
 					</table>
+					<a class="btn btn-primary" href="{{ url('produk/by-developer/'.$developer->email) }}">Lihat Produk</a>
 				</div>
 			</div>
 		</div>

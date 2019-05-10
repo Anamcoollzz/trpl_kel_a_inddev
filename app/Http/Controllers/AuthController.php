@@ -63,6 +63,9 @@ class AuthController extends Controller
         if($user->status == 'pending'){
             return redirect()->back()->with('error_msg','Mohon maaf, akun anda belum diverifikasi admin');
         }
+        if($user->status == 'blocked'){
+            return redirect()->back()->with('error_msg','Mohon maaf, akun anda diblokir');
+        }
         if(Auth::check()){
             Auth::logout();
         }

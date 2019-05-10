@@ -10,7 +10,10 @@
 				<div class="row">
 					<div class="col d-flex flex-row">
 						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('images/phone.png')}}" alt=""></div>{{\App\Pengaturan::where('key','no_telp')->first()->value}}</div>
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('images/mail.png')}}" alt=""></div><a href="mailto:fastsales@gmail.com">{{\App\Pengaturan::where('key','email')->first()->value}}</a></div>
+						@php
+						$email = \App\Pengaturan::where('key','email')->first()->value;
+						@endphp
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('images/mail.png')}}" alt=""></div><a href="mailto:{{$email}}">{{$email}}</a></div>
 						<div class="top_bar_content ml-auto">
 							<div class="top_bar_menu">
 								<!-- <ul class="standard_dropdown top_bar_dropdown"> -->
@@ -147,9 +150,36 @@
 										<li class="hassubs">
 											<a href="#">Menu Saya<i class="fas fa-chevron-down"></i></a>
 											<ul>
-												<li><a href="{{ route('produk.create') }}">Tambah Produk<i class="fas fa-chevron-down"></i></a></li>
-												<li><a href="{{ route('produk.saya') }}">Produk Saya<i class="fas fa-chevron-down"></i></a></li>
-												<li><a href="{{ route('transaksi.index') }}">Transaksi Saya<i class="fas fa-chevron-down"></i></a></li>
+												<li>
+													<a href="{{ route('produk.create') }}">
+														Tambah Produk
+														<i class="fas fa-chevron-down"></i>
+													</a>
+												</li>
+												<li>
+													<a href="{{ route('produk.saya') }}">
+														Produk Saya
+														<i class="fas fa-chevron-down"></i>
+													</a>
+												</li>
+												<li>
+													<a href="{{ route('transaksi.index') }}">
+														Transaksi Saya
+														<i class="fas fa-chevron-down"></i>
+													</a>
+												</li>
+												<li>
+													<a href="{{ route('pencairan-saldo') }}">
+														Pencairan Saldo
+														<i class="fas fa-chevron-down"></i>
+													</a>
+												</li>
+												<li>
+													<a href="{{ route('chat') }}">
+														Chat
+														<i class="fas fa-chevron-down"></i>
+													</a>
+												</li>
 											</ul>
 										</li>
 										@endif

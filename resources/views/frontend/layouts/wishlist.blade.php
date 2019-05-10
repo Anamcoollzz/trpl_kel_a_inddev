@@ -4,7 +4,11 @@
 		<div class="wishlist d-flex flex-row align-items-center justify-content-end">
 			<div class="wishlist_icon"><img src="{{asset('images/heart.png')}}" alt=""></div>
 			<div class="wishlist_content">
-				<div class="wishlist_text"><a href="#">Diinginkan</a></div>
+				<div class="wishlist_text">
+					<a href="{{ route('wishlist') }}">
+						Diinginkan
+					</a>
+				</div>
 				<div class="wishlist_count">
 					@auth()
 					{{Auth::user()->wishlist()->count()}}

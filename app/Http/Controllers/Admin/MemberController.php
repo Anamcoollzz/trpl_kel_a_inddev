@@ -13,15 +13,33 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = User::where('role', 'member')->get();
+        if($request->query('status')){
+            $data = User::where('role', 'member')->where('status',$request->query('status'))->latest()->get();
+        }elseif($request->query('time')){
+            $time = $request->query('time');
+            if($time == 'today'){
+                $data = User::where('role', 'member')
+                ->where('created_at','LIKE', date('Y-m-d').'%')
+                ->latest()->get();
+            }elseif($time == 'this_month'){
+                $data = User::where('role', 'member')
+                ->where('created_at','>=',date('Y-m-').'1')
+                ->latest()->get();
+            }else{
+                $data = User::where('role', 'member')->latest()->get();
+            }
+        }else{
+            $data = User::where('role', 'member')->latest()->get();
+        }
         return view('member.index', [
             'data'      => $data,
             'title'     => 'Member',
             'active'    => 'member.index',
             'createLink'=>false,
             'role'=>'admin',
+            'custom_dt'=>true,
         ]);
     }
 
@@ -142,5 +160,13 @@ class MemberController extends Controller
             'tahap_2'=>'sudah',
         ]);
         return redirect()->route('member.index')->with('success_msg', 'User '.$member->nama.' berhasil diverifikasi');
+    }
+
+    public function blokir(Request $r, User $member)
+    {
+        $member->update([
+            'status'=>'blocked',
+        ]);
+        return redirect()->route('member.index')->with('success_msg', 'User '.$member->nama.' berhasil dibanned');
     }
 }

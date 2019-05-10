@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Produk;
+use App\User;
 use App\Transaksi;
 use App\Keranjang;
 use App\ProdukGambar;
@@ -111,7 +112,7 @@ class ProdukController extends Controller
             abort(404);
         $produk->terakhir_dilihat = date('Y-m-d H:i:s');
         $produk->save();
-        $produk->load('screenshots','kategori');
+        $produk->load('screenshots','kategori','developer');
         $isWishlist = false;
         if(Auth::user()){
             $isWishlist = DaftarKeinginan::where('id_produk',$produk->id)
@@ -327,6 +328,21 @@ class ProdukController extends Controller
         }
         Keranjang::where('user_id', $r->user()->id)->delete();
         return redirect()->route('transaksi.show',[$transaksi->id]);
+    }
+
+    public function byDeveloper($email)
+    {
+        $developer = User::where('email',$email)->first();
+        if(is_null($developer)){
+            abort(404);
+        }
+        return view('frontend.produk.by-kategori',[
+            'title'=>'Produk dari '.$developer->nama,
+            'judul'=>'Produk dari '.$developer->nama,
+            'data'=>Produk::where('user_id', $developer->id)->verified()->paginate(20),
+            'total'=>Produk::where('user_id', $developer->id)->verified()->count(),
+            'terakhirDilihat'=>$this->terakhirDilihat(),
+        ]);
     }
 
 }

@@ -10,15 +10,23 @@
 			<!-- Deals Item -->
 			<div class="owl-item deals_item">
 				<div class="deals_image">
-					<img src="{{$d->logo}}" alt="{{$d->nama}}">
+					<center>
+						<img style="max-width: 200px;" src="{{$d->logo}}" alt="{{$d->nama}}">
+					</center>
 				</div>
 				<div class="deals_content">
 					<div class="deals_info_line d-flex flex-row justify-content-start">
-						<div class="deals_item_category"><a href="#">{{$d->kategori->nama}}</a></div>
+						<div class="deals_item_category">
+							<a href="{{$d->kategori->url}}">{{$d->kategori->nama}}</a>
+						</div>
 						{{-- <div class="deals_item_price_a ml-auto">{{$d->harga_jual}}</div> --}}
 					</div>
 					<div class="deals_info_line d-flex flex-row justify-content-start">
-						<div class="deals_item_name">{{$d->nama}}</div>
+						<div class="deals_item_name">
+							<a style="color: black;" href="{{ $d->url }}">
+								{{$d->nama}}
+							</a>
+						</div>
 						<div class="deals_item_price ml-auto">
 							@if($d->status == 'pending')
 							{{rp($d->harga)}}
@@ -36,7 +44,13 @@
 					</div> --}}
 					<div class="deals_timer d-flex flex-row align-items-center justify-content-start">
 						<div class="deals_timer_title_container">
-							<div class="deals_timer_title">{{$d->user->nama}}</div>
+							<center>
+								<div class="deals_timer_title">
+									<a href="{{ route('profil') }}" class="text-center">
+										{{$d->user->nama}}
+									</a>
+								</div>
+							</center>
 							{{-- <div class="deals_timer_subtitle">Offer ends in:</div> --}}
 						</div>
 						{{-- <div class="deals_timer_content ml-auto">

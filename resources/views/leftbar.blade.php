@@ -48,6 +48,11 @@
           <i class="fa fa-ticket"></i> <span>Transaksi</span>
         </a>
       </li>
+      <li @if($active == 'admin.pencairan-saldo.index') class="active" @endif>
+        <a href="{{ route('admin.pencairan-saldo.index') }}">
+          <i class="fa fa-dollar"></i> <span>Pencairan Saldo</span>
+        </a>
+      </li>
       <li class="treeview @if(in_array($active, ['kategori.index','kategori.create'])) active @endif ">
         <a href="#">
           <i class="fa fa-cubes"></i>

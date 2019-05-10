@@ -12,4 +12,9 @@ class DaftarKeinginan extends Model
 		'user_id',
 		'id_produk',
 	];
+
+	public function produk()
+	{
+		return $this->belongsTo('App\Produk','id_produk');
+	}
 }

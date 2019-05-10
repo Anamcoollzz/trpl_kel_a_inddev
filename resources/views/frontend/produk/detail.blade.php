@@ -86,6 +86,9 @@
 										<button type="button" style="background-color: #CD3333" class="button cart_button">Demo</button>
 									</a>
 									@endif
+									<a href="{{url('chat-developer/'.$d->developer->email)}}">
+										<button type="button" style="background-color: #B88D09" class="button cart_button">Chat Dev</button>
+									</a>
 									<div class="product_fav {{$isWishlist?'active':''}}" onclick="tambahKeWishlist({{$d->id}})"><i class="fas fa-heart"></i></div>
 								</div>
 
