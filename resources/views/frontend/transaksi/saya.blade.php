@@ -74,6 +74,9 @@
 				</div>
 			</div>
 		</div>
+
+		
+		@include('frontend.footer')
 	</div>
 
 	<script src="{{asset('frontend/js/jquery-3.3.1.min.js')}}"></script>

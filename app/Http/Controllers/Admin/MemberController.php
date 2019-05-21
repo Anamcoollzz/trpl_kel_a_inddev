@@ -16,22 +16,22 @@ class MemberController extends Controller
     public function index(Request $request)
     {
         if($request->query('status')){
-            $data = User::where('role', 'member')->where('status',$request->query('status'))->latest()->get();
+            $data = User::whereIn('role', ['member','klien'])->where('status',$request->query('status'))->latest()->get();
         }elseif($request->query('time')){
             $time = $request->query('time');
             if($time == 'today'){
-                $data = User::where('role', 'member')
+                $data = User::whereIn('role', ['member','klien'])
                 ->where('created_at','LIKE', date('Y-m-d').'%')
                 ->latest()->get();
             }elseif($time == 'this_month'){
-                $data = User::where('role', 'member')
+                $data = User::whereIn('role', ['member','klien'])
                 ->where('created_at','>=',date('Y-m-').'1')
                 ->latest()->get();
             }else{
-                $data = User::where('role', 'member')->latest()->get();
+                $data = User::whereIn('role', ['member','klien'])->latest()->get();
             }
         }else{
-            $data = User::where('role', 'member')->latest()->get();
+            $data = User::whereIn('role', ['member','klien'])->latest()->get();
         }
         return view('member.index', [
             'data'      => $data,

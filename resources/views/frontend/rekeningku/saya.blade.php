@@ -70,13 +70,16 @@
 						</table>
 						@else
 						<div class="alert alert-danger">
-							Anda belum transaksi :(
+							Anda belum ada rekening :(
 						</div>
 						@endif
 					</div>
 				</div>
 			</div>
 		</div>
+
+		
+		@include('frontend.footer')
 	</div>
 	<form action="" method="post" id="form-hapus">
 		@csrf

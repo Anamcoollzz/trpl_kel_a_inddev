@@ -41,9 +41,18 @@ class VerifikasiController extends Controller
 			'no_hp'=>'required',
 			'email'=>'required|email|unique:users,email,'.$r->user()->id,
 			// 'password'=>'required|min:5',
-			'alamat'=>'required'
+			'alamat'=>'required',
+			'nik'=>$r->jenis_member == 'klien' ? "nullable" : 'required',
 		]);
 		$user = $r->user();
+		$tingkat_member = 'member';
+		$role = 'member';
+		$nik = $r->nik;
+		if($r->jenis_member == 'klien'){
+			$tingkat_member = null;
+			$nik = null;
+			$role = 'klien';
+		}
 		$user->update([
 			'nama'=>$r->nama,
 			'no_hp'=>$r->no_hp,
@@ -51,9 +60,10 @@ class VerifikasiController extends Controller
 			// 'password'=>bcrypt($r->password),
 			'alamat'=>$r->alamat,
 			'jenis_kelamin'=>$r->jenis_kelamin,
-			'tingkat_member'=>$r->jenis_member,
-			'nik'=>$r->nik,
+			'tingkat_member'=>$tingkat_member,
+			'nik'=>$nik,
 			'tahap_1'=>'sudah',
+			'role'=>$role,
 		]);
 		return redirect()->route('tahap2');
 	}

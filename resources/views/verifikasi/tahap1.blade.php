@@ -37,20 +37,20 @@
 								<input value="{{old('email')?old('email'):Auth::user()->email}}" type="email" id="email" class="form-control" placeholder="Email" name="email">
 							</div>
 							<div class="col-md-4">
-								<input style="margin-top: 15px;" value="{{old('nik')?old('nik'):Auth::user()->nik}}" type="number" id="nik" class="form-control" placeholder="NIK" required="required" name="nik">
-							</div>
-							<div class="col-md-4">
-								<select style="margin-top: 15px;" name="jenis_kelamin">
-									<option value="">Pilih Jenis Kelamin</option>
-									<option value="Laki-laki">Laki-laki</option>
-									<option value="Perempuan">Perempuan</option>
+								<select onchange="toggleNik()" style="margin-top: 15px;" name="jenis_member" id="jenis_member">
+									<option value="">Pilih Jenis Member</option>
+									<option value="klien">Klien</option>
+									<option value="member">Member</option>
 								</select>
 							</div>
 							<div class="col-md-4">
-								<select style="margin-top: 15px;" name="jenis_member">
-									<option value="">Pilih Jenis Member</option>
-									<option value="member">Biasa</option>
-									<option value="cv">CV</option>
+								<input style="margin-top: 15px;" value="{{old('nik')?old('nik'):Auth::user()->nik}}" type="number" id="nik" class="form-control" placeholder="NIK" name="nik">
+							</div>
+							<div class="col-md-4">
+								<select style="margin-top: 15px;" name="jenis_kelamin" id="jenis_kelamin">
+									<option value="">Pilih Jenis Kelamin</option>
+									<option value="Laki-laki">Laki-laki</option>
+									<option value="Perempuan">Perempuan</option>
 								</select>
 							</div>
 						</div>
@@ -73,3 +73,15 @@
 	</div>
 </div>
 @endsection
+
+@push('script')
+<script>
+	function toggleNik(){
+		if($('#jenis_member').val() == 'klien'){
+			$('#nik').hide()
+		}else{
+			$('#nik').show()
+		}
+	}
+</script>
+@endpush

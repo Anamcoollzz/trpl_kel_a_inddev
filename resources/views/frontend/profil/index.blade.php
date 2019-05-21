@@ -43,7 +43,7 @@
 							</tr>
 							<tr>
 								<td>Jenis Member</td>
-								<td>{{Auth::user()->tingkat_member}}</td>
+								<td>{{ucfirst(Auth::user()->role)}}</td>
 							</tr>
 							<tr>
 								<td>Email</td>
@@ -76,8 +76,10 @@
 					</table>
 					<a href="{{route('profil.ubah')}}" class="btn btn-primary">Ubah Profil</a>
 					<a href="{{route('profil.ubah-password')}}" class="btn btn-primary">Ubah Password</a>
+					@if(Auth::user()->role == 'member')
 					<a href="{{route('cairkan-saldo')}}" class="btn btn-primary">Cairkan Saldo</a>
 					<a href="{{route('rekeningku')}}" class="btn btn-primary">Rekening</a>
+					@endif
 				</div>
 			</div>
 		</div>

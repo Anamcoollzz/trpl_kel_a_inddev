@@ -44,7 +44,7 @@
 								<div class="top_bar_user">
 									<div class="user_icon"><img src="{{asset('images/user.svg')}}" alt=""></div>
 									@if(Auth::check())
-									@if(Auth::user()->role == 'member')
+									@if(Auth::user()->role == 'member' || Auth::user()->role == 'klien')
 									<div><a href="{{route('profil')}}">{{Auth::user()->nama}}</a></div>
 									@else
 									<div>{{Auth::user()->nama}}</div>
@@ -146,10 +146,11 @@
 											</ul>
 										</li>
 										@auth
-										@if(Auth::user()->role == 'member')
+										@if(Auth::user()->role == 'member' || Auth::user()->role == 'klien')
 										<li class="hassubs">
 											<a href="#">Menu Saya<i class="fas fa-chevron-down"></i></a>
 											<ul>
+												@if(Auth::user()->role == 'member')
 												<li>
 													<a href="{{ route('produk.create') }}">
 														Tambah Produk
@@ -162,18 +163,21 @@
 														<i class="fas fa-chevron-down"></i>
 													</a>
 												</li>
+												@endif
 												<li>
 													<a href="{{ route('transaksi.index') }}">
 														Transaksi Saya
 														<i class="fas fa-chevron-down"></i>
 													</a>
 												</li>
+												@if(Auth::user()->role == 'member')
 												<li>
 													<a href="{{ route('pencairan-saldo') }}">
 														Pencairan Saldo
 														<i class="fas fa-chevron-down"></i>
 													</a>
 												</li>
+												@endif
 												<li>
 													<a href="{{ route('chat') }}">
 														Chat

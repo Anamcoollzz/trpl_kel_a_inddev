@@ -34,9 +34,7 @@ class CreateUsersTable extends Migration
             $table->enum('tahap_3',[
                 'belum','sudah',
             ]);
-            $table->enum('tingkat_member',[
-                'member','cv',
-            ]);
+            $table->string('tingkat_member')->nullable();
             $table->enum('jenis_kelamin',[
                 'Perempuan','Laki-laki',
             ]);
